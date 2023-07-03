@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">wheretogo</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">DeploymentKey</string>
+    <string moduleConfig="true" name="appCenterAnalytics_whenToEnableAnalytics">whenToEnableAnalytics</string>
+    <string moduleConfig="true" name="appCenterCrashes_whenToSendCrashes">whenToSendCrashes</string>
 </resources>

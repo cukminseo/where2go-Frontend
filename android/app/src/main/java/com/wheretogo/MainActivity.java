@@ -1,4 +1,4 @@
-package com.hanium.wheretogo;
+package com.wheretogo;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
