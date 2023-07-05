@@ -109,10 +109,20 @@ PODS:
   - libwebp/mux (1.2.4):
     - libwebp/demux
   - libwebp/webp (1.2.4)
-  - NMapsGeometry (1.0.1)
-  - NMapsMap (3.16.2):
-    - NMapsGeometry
+  - NMapsMap (3.15.0)
   - OpenSSL-Universal (1.1.1100)
+  - Permission-Camera (3.8.1):
+    - RNPermissions
+  - Permission-LocationAccuracy (3.8.1):
+    - RNPermissions
+  - Permission-LocationAlways (3.8.1):
+    - RNPermissions
+  - Permission-LocationWhenInUse (3.8.1):
+    - RNPermissions
+  - Permission-Notifications (3.8.1):
+    - RNPermissions
+  - Permission-PhotoLibrary (3.8.1):
+    - RNPermissions
   - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
@@ -614,7 +624,14 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
+  - NMapsMap (= 3.15.0)
   - OpenSSL-Universal (= 1.1.1100)
+  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera`)
+  - Permission-LocationAccuracy (from `../node_modules/react-native-permissions/ios/LocationAccuracy`)
+  - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways`)
+  - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse`)
+  - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications`)
+  - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -684,7 +701,6 @@ SPEC REPOS:
     - JWT
     - libevent
     - libwebp
-    - NMapsGeometry
     - NMapsMap
     - OpenSSL-Universal
     - SDWebImage
@@ -716,6 +732,18 @@ EXTERNAL SOURCES:
   hermes-engine:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
     :tag: hermes-2023-03-20-RNv0.72.0-49794cfc7c81fb8f69fd60c3bbf85a7480cc5a77
+  Permission-Camera:
+    :path: "../node_modules/react-native-permissions/ios/Camera"
+  Permission-LocationAccuracy:
+    :path: "../node_modules/react-native-permissions/ios/LocationAccuracy"
+  Permission-LocationAlways:
+    :path: "../node_modules/react-native-permissions/ios/LocationAlways"
+  Permission-LocationWhenInUse:
+    :path: "../node_modules/react-native-permissions/ios/LocationWhenInUse"
+  Permission-Notifications:
+    :path: "../node_modules/react-native-permissions/ios/Notifications"
+  Permission-PhotoLibrary:
+    :path: "../node_modules/react-native-permissions/ios/PhotoLibrary"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTRequired:
@@ -840,9 +868,14 @@ SPEC CHECKSUMS:
   JWT: ef71dfb03e1f842081e64dc42eef0e164f35d251
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
-  NMapsGeometry: 53c573ead66466681cf123f99f698dc8071a4b83
-  NMapsMap: aaa64717249b06ae82c3a3addb3a01f0e33100ab
+  NMapsMap: f151761c088d6516064c59da03ab6503769486e6
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
+  Permission-Camera: 7e6f6b84c8f08d81e012f9f122b6541633308e2c
+  Permission-LocationAccuracy: 89f89db96efdf7d337918ba7845c6fc26781d288
+  Permission-LocationAlways: 787b4661822618be7ce58071a70213e16a639516
+  Permission-LocationWhenInUse: 100eaf457c8eede236e62af0d17b7e49c0292e62
+  Permission-Notifications: 3f51a1f7fdee600c6aeb5ffeafbdb7614f0d13ee
+  Permission-PhotoLibrary: 3e76aece6fb9bc2736e4c7bf1f455b1e1124fcbb
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: c52ee8fb2b35c1b54031dd8e92d88ad4dba8f2ce
   RCTTypeSafety: 75fa444becadf0ebfa0a456b8c64560c7c89c7df
@@ -898,6 +931,6 @@ SPEC CHECKSUMS:
   Yoga: 65286bb6a07edce5e4fe8c90774da977ae8fc009
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 17c292470b07008931cadaa9bc4cf5c3e3bae377
+PODFILE CHECKSUM: f851e1660c1da92297c59504c3b16adf1a5c24a6
 
 COCOAPODS: 1.12.1
