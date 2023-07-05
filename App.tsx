@@ -1,121 +1,13 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-//import {Provider} from 'react-redux';
-//import store from './src/store';
-import {useState} from 'react';
-import SignIn from './src/pages/SignIn';
-import SignUp from './src/pages/SignUp';
-import StoreMap from './src/pages/StoreMap';
-import Setting from './src/pages/Setting';
-import {FavoriteModal, AroundModal} from './src/components/Modal';
-
-export type LoggedInParamList = {
-  StoreMap: undefined;
-  Setting: undefined;
-  AroundModal: undefined;
-  FavoriteModal: undefined;
-};
-
-export type RootStackParamList = {
-  SignIn: undefined;
-  SignUp: undefined;
-};
-
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator<RootStackParamList>();
-const mainStack = createNativeStackNavigator<LoggedInParamList>();
-
-//즐겨찾기
-const Favorite = () => {
-  return (
-    <mainStack.Navigator>
-      <mainStack.Screen name="StoreMap" component={StoreMap} />
-      <mainStack.Screen
-        name="FavoriteModal"
-        component={FavoriteModal}
-        options={{presentation: 'transparentModal'}}
-      />
-    </mainStack.Navigator>
-  );
-};
-
-//주변
-const Around = () => {
-  return (
-    <mainStack.Navigator>
-      <mainStack.Screen name="StoreMap" component={StoreMap} />
-      <mainStack.Screen
-        name="AroundModal"
-        component={AroundModal}
-        options={{presentation: 'transparentModal'}}
-      />
-    </mainStack.Navigator>
-  );
-};
-
-//마이페이지
-const MyPage = () => {
-  return (
-    <mainStack.Navigator>
-      <mainStack.Screen name="Setting" component={Setting} />
-    </mainStack.Navigator>
-  );
-};
+import {Provider} from 'react-redux';
+import store from './src/store';
+import AppInner from './AppInner';
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(true);
   return (
-    <NavigationContainer>
-      {isLoggedIn ? (
-        <Tab.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          <Tab.Screen
-            name="Favorite"
-            component={Favorite}
-            options={{title: '즐겨찾기'}}
-            listeners={({navigation}) => ({
-              tabPress: e => {
-                e.preventDefault();
-                navigation.navigate('Favorite', {screen: 'FavoriteModal'});
-              },
-            })}
-          />
-          <Tab.Screen
-            name="Around"
-            component={Around}
-            options={{title: '주변'}}
-            listeners={({navigation}) => ({
-              tabPress: e => {
-                e.preventDefault();
-                navigation.navigate('AroundModal');
-              },
-            })}
-          />
-          <Tab.Screen
-            name="MyPage"
-            component={MyPage}
-            options={{title: '마이페이지'}}
-          />
-        </Tab.Navigator>
-      ) : (
-        <Stack.Navigator>
-          <Stack.Screen
-            name="SignIn"
-            component={SignIn}
-            options={{title: '로그인'}}
-          />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUp}
-            options={{title: '회원가입'}}
-          />
-        </Stack.Navigator>
-      )}
-    </NavigationContainer>
+    <Provider store={store}>
+      <AppInner />
+    </Provider>
   );
 }
 
