@@ -2,7 +2,8 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+// import SplashScreen from 'react-native-splash-screen'; //splash 화면 구성을 위한 추가
 
 import SignIn from './src/pages/SignIn';
 import SignUp from './src/pages/SignUp';
@@ -17,10 +18,7 @@ export type LoggedInParamList = {
   FavoriteModal: undefined;
 };
 
-export type RootStackParamList = {
-  SignIn: undefined;
-  SignUp: undefined;
-};
+export type RootStackParamList = {SignIn: undefined; SignUp: undefined};
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -65,6 +63,31 @@ const MyPage = () => {
 
 function AppInner() {
   const [isLoggedIn, setLoggedIn] = useState(true);
+  // const [loading, setLoading] = useState(true); // loading state 추가
+
+  // useEffect(() => {
+  //   console.log('App rendered');
+  // }, []);
+  // // useEffect에 loading state를 사용하도록 수정
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     console.log('Loading state has been set to false.');
+  //     setLoading(false); // 로딩 완료 시 loading state 업데이트
+  //   }, 3000);
+
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, []);
+
+  // // loading state가 바뀔 때 마다 실행되는 useEffect
+  // useEffect(() => {
+  //   if (!loading) {
+  //     console.log('Calling SplashScreen.hide()...');
+  //     SplashScreen.hide();
+  //   }
+  // }, [loading]);
+
   return (
     <NavigationContainer>
       {isLoggedIn ? (

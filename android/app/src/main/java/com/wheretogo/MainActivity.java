@@ -1,6 +1,7 @@
 package com.wheretogo;
-
+import android.os.Bundle; //splash 화면 구성을 위한 추가
 import com.facebook.react.ReactActivity;
+import org.devio.rn.splashscreen.SplashScreen; //splash 화면 구성을 위한 추가
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
@@ -16,6 +17,11 @@ public class MainActivity extends ReactActivity {
     return "wheretogo";
   }
 
+  @Override //splash 화면 구성을 위한 추가
+  protected void onCreate(Bundle savedInstanceState) {
+    SplashScreen.show(this, true); 
+    super.onCreate(savedInstanceState);
+  }
   /**
    * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link
    * DefaultReactActivityDelegate} which allows you to easily enable Fabric and Concurrent React

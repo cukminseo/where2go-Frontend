@@ -10,6 +10,7 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import com.microsoft.codepush.react.CodePush;
 import java.util.List;
+import org.devio.rn.splashscreen.SplashScreenReactPackage; //splash 화면 구성을 위한 추가
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+          packages.add(new SplashScreenReactPackage());  //splash 화면 구성을 위한 추가
           return packages;
         }
 

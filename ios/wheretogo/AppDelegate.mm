@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
+#import "RNSplashScreen.h" //splash 화면 구성을 위한 추가
 
 @implementation AppDelegate
 
@@ -11,6 +12,7 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
+  [RNSplashScreen show]; //splash 화면 구성을 위한 추가
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
