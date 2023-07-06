@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const mainStack = createNativeStackNavigator<LoggedInParamList>();
 
-//즐겨찾기
+//네비게이션바__즐겨찾기
 const Favorite = () => {
   return (
     <mainStack.Navigator>
@@ -40,7 +40,7 @@ const Favorite = () => {
   );
 };
 
-//주변
+//네비게이션바__주변
 const Around = () => {
   return (
     <mainStack.Navigator>
@@ -54,7 +54,7 @@ const Around = () => {
   );
 };
 
-//마이페이지
+//네비게이션바__마이페이지
 const MyPage = () => {
   return (
     <mainStack.Navigator>
