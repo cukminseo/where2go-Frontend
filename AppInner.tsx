@@ -13,8 +13,6 @@ import {Modal, Pressable, Text, View} from 'react-native';
 export type LoggedInParamList = {
   StoreMap: undefined;
   Setting: undefined;
-  AroundModal: undefined;
-  FavoriteModal: undefined;
 };
 
 export type RootStackParamList = {
@@ -37,19 +35,20 @@ const MyPage = () => {
 
 function AppInner() {
   const [isLoggedIn, setLoggedIn] = useState(true);
-  const [modalVisible, setModalVisible] = useState(false);
-  const FModal = () => {
+  const [favoriteVisible, setFavoriteVisible] = useState(false);
+  const [aroundVisible, setAroundVisible] = useState(false);
+  const FavoriteModal = () => {
     return (
       <View>
         <StoreMap />
         <Modal
           animationType="slide"
-          visible={modalVisible}
+          visible={favoriteVisible}
           statusBarTranslucent>
           <Text style={{textAlign: 'center'}}>Create Posts !! This is Modal</Text>
           <Pressable
             onPress={() => {
-              setModalVisible(!modalVisible);
+              setFavoriteVisible(!favoriteVisible);
             }}>
             <Text>hi</Text>
           </Pressable>
@@ -57,22 +56,22 @@ function AppInner() {
       </View>
     );
   };
-  const AModal = () => {
+  const AroundModal = () => {
     return (
       <View>
         <StoreMap />
         <Modal
           animationType="slide"
-          visible={modalVisible}
+          visible={aroundVisible}
           statusBarTranslucent>
           <Text style={{textAlign: 'center'}}>
             Create Posts !! This is Modal
           </Text>
           <Pressable
             onPress={() => {
-              setModalVisible(!modalVisible);
+              setAroundVisible(!aroundVisible);
             }}>
-            <Text>hi</Text>
+            <Text>around</Text>
           </Pressable>
         </Modal>
       </View>
@@ -86,20 +85,20 @@ function AppInner() {
             headerShown: false,
           }}>
           <Tab.Screen
-            name="FModal"
-            component={FModal}
+            name="FavoriteModal"
+            component={FavoriteModal}
             listeners={() => ({
               tabPress: e => {
-                setModalVisible(!modalVisible);
+                setFavoriteVisible(!favoriteVisible);
               },
             })}
           />
           <Tab.Screen
-            name="AModal"
-            component={AModal}
+            name="AroundModal"
+            component={AroundModal}
             listeners={() => ({
               tabPress: e => {
-                setModalVisible(!modalVisible);
+                setAroundVisible(!aroundVisible);
               },
             })}
           />

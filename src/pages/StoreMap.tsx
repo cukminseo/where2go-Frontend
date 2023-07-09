@@ -1,15 +1,8 @@
 import React from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {LoggedInParamList} from '../../AppInner';
 import {Alert, Button, Dimensions, View, TextInput} from 'react-native';
 import NaverMapView, {Marker, Path} from 'react-native-nmap';
 
-type StoreMapScreenProps = NativeStackScreenProps<
-  LoggedInParamList,
-  'StoreMap'
->;
-
-function StoreMap({}: StoreMapScreenProps) {
+function StoreMap() {
   return (
     <View>
       <View
