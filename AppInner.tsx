@@ -85,7 +85,7 @@ function AppInner() {
             headerShown: false,
           }}>
           <Tab.Screen
-            name="FavoriteModal"
+            name="즐겨찾기"
             component={FavoriteModal}
             listeners={() => ({
               tabPress: e => {
@@ -94,7 +94,7 @@ function AppInner() {
             })}
           />
           <Tab.Screen
-            name="AroundModal"
+            name="주변"
             component={AroundModal}
             listeners={() => ({
               tabPress: e => {
