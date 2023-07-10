@@ -12,13 +12,14 @@ import {
 import NaverMapView, {Marker, Path} from 'react-native-nmap';
 import Filter1 from '../components/Filter1';
 import Filter2 from '../components/Filter2';
+import Filter3 from '../components/Filter3';
 
 function StoreMap() {
   const [latitude, setLatitude] = useState(37.56667);
   const [longitude, setLongitude] = useState(126.97806);
   const [checkvisible, setCheckVisible] = useState(false);
   const [categoryVisible, setCategoryVisible] = useState(false);
-
+  const [liquorVisible, setLiquorVisible] = useState(false);
 
   return (
     <View>
@@ -68,7 +69,10 @@ function StoreMap() {
           <Modal visible={categoryVisible} transparent statusBarTranslucent>
             <Filter2 setCategoryVisible={setCategoryVisible} />
           </Modal>
-          <Button title="주종" onPress={() => Alert.alert('주종')} />
+          <Button title="주종" onPress={() => setLiquorVisible(true)} />
+          <Modal visible={liquorVisible} transparent statusBarTranslucent>
+            <Filter3 setLiquorVisible={setLiquorVisible} />
+          </Modal>
           <Button title="선호 지역" onPress={() => Alert.alert('선호 지역')} />
         </View>
         <View style={styles.reservation}>

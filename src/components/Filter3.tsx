@@ -3,11 +3,11 @@ import {Pressable, Text, View, StyleSheet, Image} from 'react-native';
 import {useState} from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
-const Filter2 = props => {
+const Filter3 = props => {
   return (
     <View style={styles.filterModalBox}>
       <View style={styles.filterModal}>
-        <Text>주점 종류를 선택해주세요</Text>
+        <Text>주종을 골라주세요</Text>
         <View
           style={{
             flexDirection: 'row',
@@ -19,7 +19,7 @@ const Filter2 = props => {
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="생맥주집"
+            text="칵테일"
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
@@ -29,7 +29,7 @@ const Filter2 = props => {
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="이자카야"
+            text="와인바"
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
@@ -39,18 +39,7 @@ const Filter2 = props => {
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="포장마차"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
-            textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
-          />
-          <BouncyCheckbox
-            style={{marginTop: 10}}
-            size={24}
-            fillColor="#4E6D5E"
-            unfillColor="#FFFFFF"
-            text="대폿집"
+            text="소주, 맥주"
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
@@ -61,7 +50,7 @@ const Filter2 = props => {
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="개인 룸"
+            text="생맥주"
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
@@ -72,7 +61,51 @@ const Filter2 = props => {
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="바 형태"
+            text="보드카"
+            iconStyle={styles.iconStyle}
+            innerIconStyle={styles.innerIconStyle}
+            textStyle={{textDecorationLine: 'none'}}
+            textContainerStyle={{marginLeft: 7}}
+          />
+          <BouncyCheckbox
+            style={{marginTop: 10}}
+            size={24}
+            fillColor="#4E6D5E"
+            unfillColor="#FFFFFF"
+            text="세계 맥주"
+            iconStyle={styles.iconStyle}
+            innerIconStyle={styles.innerIconStyle}
+            textStyle={{textDecorationLine: 'none'}}
+            textContainerStyle={{marginLeft: 7}}
+          />
+          <BouncyCheckbox
+            style={{marginTop: 10}}
+            size={24}
+            fillColor="#4E6D5E"
+            unfillColor="#FFFFFF"
+            text="막걸리"
+            iconStyle={styles.iconStyle}
+            innerIconStyle={styles.innerIconStyle}
+            textStyle={{textDecorationLine: 'none'}}
+            textContainerStyle={{marginLeft: 7}}
+          />
+          <BouncyCheckbox
+            style={{marginTop: 10}}
+            size={24}
+            fillColor="#4E6D5E"
+            unfillColor="#FFFFFF"
+            text="과일소주"
+            iconStyle={styles.iconStyle}
+            innerIconStyle={styles.innerIconStyle}
+            textStyle={{textDecorationLine: 'none'}}
+            textContainerStyle={{marginLeft: 7}}
+          />
+          <BouncyCheckbox
+            style={{marginTop: 10}}
+            size={24}
+            fillColor="#4E6D5E"
+            unfillColor="#FFFFFF"
+            text="시그니처"
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
@@ -81,10 +114,10 @@ const Filter2 = props => {
         </View>
         <View style={{flexDirection: 'row', marginTop: 20}}>
           <Pressable>
-            <Text onPress={() => props.setCategoryVisible(false)}>취소</Text>
+            <Text onPress={() => props.setLiquorVisible(false)}>취소</Text>
           </Pressable>
           <Pressable>
-            <Text onPress={() => props.setCategoryVisible(false)}>확인</Text>
+            <Text onPress={() => props.setLiquorVisible(false)}>확인</Text>
           </Pressable>
         </View>
       </View>
@@ -118,4 +151,4 @@ const styles = StyleSheet.create({
   innerIconStyle: {borderWidth: 2, borderRadius: 8},
 });
 
-export default Filter2;
+export default Filter3;
