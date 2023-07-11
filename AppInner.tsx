@@ -8,13 +8,11 @@ import SignIn from './src/pages/SignIn';
 import SignUp from './src/pages/SignUp';
 import StoreMap from './src/pages/StoreMap';
 import Setting from './src/pages/Setting';
-import {FavoriteModal, AroundModal} from './src/components/Modal';
+import {Modal, Pressable, Text, View} from 'react-native';
 
 export type LoggedInParamList = {
   StoreMap: undefined;
   Setting: undefined;
-  AroundModal: undefined;
-  FavoriteModal: undefined;
 };
 
 export type RootStackParamList = {
@@ -25,34 +23,6 @@ export type RootStackParamList = {
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const mainStack = createNativeStackNavigator<LoggedInParamList>();
-
-//즐겨찾기
-const Favorite = () => {
-  return (
-    <mainStack.Navigator>
-      <mainStack.Screen name="StoreMap" component={StoreMap} />
-      <mainStack.Screen
-        name="FavoriteModal"
-        component={FavoriteModal}
-        options={{presentation: 'transparentModal'}}
-      />
-    </mainStack.Navigator>
-  );
-};
-
-//주변
-const Around = () => {
-  return (
-    <mainStack.Navigator>
-      <mainStack.Screen name="StoreMap" component={StoreMap} />
-      <mainStack.Screen
-        name="AroundModal"
-        component={AroundModal}
-        options={{presentation: 'transparentModal'}}
-      />
-    </mainStack.Navigator>
-  );
-};
 
 //마이페이지
 const MyPage = () => {
@@ -65,6 +35,48 @@ const MyPage = () => {
 
 function AppInner() {
   const [isLoggedIn, setLoggedIn] = useState(true);
+  const [favoriteVisible, setFavoriteVisible] = useState(false);
+  const [aroundVisible, setAroundVisible] = useState(false);
+  const FavoriteModal = () => {
+    return (
+      <View>
+        <StoreMap />
+        <Modal
+          animationType="slide"
+          visible={favoriteVisible}
+          statusBarTranslucent>
+          <Text style={{textAlign: 'center'}}>Create Posts !! This is Modal</Text>
+          <Pressable
+            onPress={() => {
+              setFavoriteVisible(!favoriteVisible);
+            }}>
+            <Text>hi</Text>
+          </Pressable>
+        </Modal>
+      </View>
+    );
+  };
+  const AroundModal = () => {
+    return (
+      <View>
+        <StoreMap />
+        <Modal
+          animationType="slide"
+          visible={aroundVisible}
+          statusBarTranslucent>
+          <Text style={{textAlign: 'center'}}>
+            Create Posts !! This is Modal
+          </Text>
+          <Pressable
+            onPress={() => {
+              setAroundVisible(!aroundVisible);
+            }}>
+            <Text>around</Text>
+          </Pressable>
+        </Modal>
+      </View>
+    );
+  };
   return (
     <NavigationContainer>
       {isLoggedIn ? (
@@ -73,24 +85,20 @@ function AppInner() {
             headerShown: false,
           }}>
           <Tab.Screen
-            name="Favorite"
-            component={Favorite}
-            options={{title: '즐겨찾기'}}
-            listeners={({navigation}) => ({
+            name="즐겨찾기"
+            component={FavoriteModal}
+            listeners={() => ({
               tabPress: e => {
-                e.preventDefault();
-                navigation.navigate('Favorite', {screen: 'FavoriteModal'});
+                setFavoriteVisible(!favoriteVisible);
               },
             })}
           />
           <Tab.Screen
-            name="Around"
-            component={Around}
-            options={{title: '주변'}}
-            listeners={({navigation}) => ({
+            name="주변"
+            component={AroundModal}
+            listeners={() => ({
               tabPress: e => {
-                e.preventDefault();
-                navigation.navigate('Around', {screen: 'AroundModal'});
+                setAroundVisible(!aroundVisible);
               },
             })}
           />
