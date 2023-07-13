@@ -9,39 +9,31 @@ import {useAppDispatch} from '../store';
 import {RootStackParamList} from '../../App';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text, View, Pressable, StyleSheet} from 'react-native';
+import {typoStyle} from './styles.js';
 
 type StartScreenProps = NativeStackScreenProps<RootStackParamList, 'Start'>;
 
 function Start({navigation}: StartScreenProps) {
   const dispatch = useAppDispatch();
   const userSignIn = useCallback(() => {
-    //사용자 로그인
+    //사용자 로그인 setting
     navigation.navigate('SignIn');
   }, [navigation]);
   const ownersSignIn = useCallback(() => {
-    //사장님 로그인
+    //사장님 로그인 setting
     navigation.navigate('SignIn');
   }, [navigation]);
   return (
     <SafeAreaView style={styles.container}>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
-      <Text>가게를 찾을땐 역시 어디가게</Text>
+      <Text style={typoStyle.title2}>
+        가게를 찾을땐 역시 어디가게{'\n'}가게를 찾을땐 역시 어디가게{'\n'}가게를
+        찾을땐 역시 어디가게
+      </Text>
       <View style={styles.selectButtonContainer}>
-        <Pressable onPress={userSignIn}>
+        <Pressable style={styles.selectButton} onPress={userSignIn}>
           <Text style={styles.selectButtonText}>이용자로 시작</Text>
         </Pressable>
-        <Pressable onPress={ownersSignIn}>
+        <Pressable style={styles.selectButton} onPress={ownersSignIn}>
           <Text style={styles.selectButtonText}>사장님으로 시작</Text>
         </Pressable>
       </View>
@@ -53,8 +45,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF', // 흰색으로 변경
+    padding: 40,
   },
-  selectButtonContainer: {},
+  selectButtonContainer: {
+    marginTop: 100,
+  },
+  selectButton: {
+    backgroundColor: '#4E6D5E',
+    borderRadius: 12,
+    marginBottom: 10,
+    marginVertical: 7,
+    marginHorizontal: 40,
+  },
   selectButtonText: {
     fontSize: 20,
     margin: 20,
