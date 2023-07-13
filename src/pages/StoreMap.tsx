@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
   Alert,
-  Button,
   Dimensions,
   View,
   TextInput,
@@ -11,7 +10,7 @@ import {
   Image,
   Pressable,
 } from 'react-native';
-import NaverMapView, {Marker, Path} from 'react-native-nmap';
+import NaverMapView, {Marker} from 'react-native-nmap';
 import Geolocation from '@react-native-community/geolocation';
 import Filter1 from '../components/Filter1';
 import Filter2 from '../components/Filter2';
@@ -97,111 +96,122 @@ function StoreMap() {
 
   return (
     <SafeAreaView>
-      <View>
-        <View style={styles.fill}>
-          <View style={{flexDirection: 'row'}}>
+      <View style={styles.fill}>
+        <View style={{flexDirection: 'row', backgroundColor: 'white'}}>
+          <View style={styles.inputBox}>
             <TextInput
-              style={{backgroundColor: '#F2F2F2', flex: 1}}
+              style={styles.input}
               placeholder="검색할 내용을 입력해 주세요."
               onChangeText={(text): void => setSearchWord(text)}
             />
-            <Button
-              title="검색하기"
-              onPress={(): void => {
-                const searchStore = searchData.map((store: any) => {
-                  return {
-                    id: store.id,
-                    title: store.title,
-                    coordinate: store.coordinate,
-                  };
-                });
-                setMarkers(searchStore);
-                // axiosInstance
-                //   .post('houses/search', {
-                //     searchWord,
-                //   })
-                //   .then(res => {
-                //     const searchHouse = res.data.map((house: any) => {
-                //       return {
-                //         id: house.id,
-                //         title: house.title,
-                //         coordinate: {
-                //           latitude: Number(house.location[0]),
-                //           longitude: Number(house.location[1]),
-                //         },
-                //       };
-                //     });
-                //     setMarkers(searchHouse);
-                //   });
-              }}
-            />
-          </View>
-          <View style={styles.filterBox}>
-            <Button title="인원수" onPress={() => setCheckVisible(true)} />
-            <Modal visible={checkvisible} transparent statusBarTranslucent>
-              <Filter1 setCheckVisible={setCheckVisible} />
-            </Modal>
-            <Button
-              title="주점 종류"
-              onPress={() => setCategoryVisible(true)}
-            />
-            <Modal visible={categoryVisible} transparent statusBarTranslucent>
-              <Filter2 setCategoryVisible={setCategoryVisible} />
-            </Modal>
-            <Button title="주종" onPress={() => setLiquorVisible(true)} />
-            <Modal visible={liquorVisible} transparent statusBarTranslucent>
-              <Filter3 setLiquorVisible={setLiquorVisible} />
-            </Modal>
-            <Button title="선호 지역" onPress={() => setFavorLocation(true)} />
-            <Modal visible={favorLocation} transparent statusBarTranslucent>
-              <Filter4 setFavorLocation={setFavorLocation} />
-            </Modal>
           </View>
           <Pressable
-            style={styles.reservation}
-            onPress={() => Alert.alert('예약 현황')}>
-            <Text style={{color: 'white'}}>예약 현황</Text>
-            <Text style={{color: 'white'}}> {`>`} </Text>
-          </Pressable>
-          <NaverMapView
-            style={{width: '100%', height: '100%'}}
-            zoomControl={false}
-            center={{
-              zoom: 16,
-              tilt: 10,
-              latitude: myPosition.latitude,
-              longitude: myPosition.longitude,
+            style={{flex: 1}}
+            onPress={(): void => {
+              const searchStore = searchData.map((store: any) => {
+                return {
+                  id: store.id,
+                  title: store.title,
+                  coordinate: store.coordinate,
+                };
+              });
+              setMarkers(searchStore);
+              // axiosInstance
+              //   .post('houses/search', {
+              //     searchWord,
+              //   })
+              //   .then(res => {
+              //     const searchHouse = res.data.map((house: any) => {
+              //       return {
+              //         id: house.id,
+              //         title: house.title,
+              //         coordinate: {
+              //           latitude: Number(house.location[0]),
+              //           longitude: Number(house.location[1]),
+              //         },
+              //       };
+              //     });
+              //     setMarkers(searchHouse);
+              //   });
             }}>
-            {markers &&
-              markers.map(
-                (store: {
-                  id: number;
-                  title: string;
-                  coordinate: {latitude: number; longitude: number};
-                }) => (
-                  <Marker
-                    key={store.id}
-                    coordinate={store.coordinate}
-                    width={30}
-                    height={30}
-                    anchor={{x: 0.5, y: 0.5}}
-                    caption={{text: store.title}}
-                    image={require('../assets/icon_location.png')}
-                  />
-                ),
-              )}
-          </NaverMapView>
-          <View style={styles.currentStatus}>
-            <Pressable
-              onPress={() => {
-                setMyPosition({
-                  latitude: myPosition.latitude - 0.00000000001, //카메라 이동(임시)
-                  longitude: myPosition.longitude,
-                });
-              }}>
-              <Image source={require('../assets/icon_current_location.png')} />
-            </Pressable>
-          </View>
+            <Image
+              style={styles.btnSearch}
+              source={require('../assets/mapIcon/icon_search.png')}
+            />
+          </Pressable>
+        </View>
+        <View style={styles.filterBox}>
+          <Pressable onPress={() => setCheckVisible(true)}>
+            <Text style={styles.textStyle}>인원수</Text>
+          </Pressable>
+          <Modal visible={checkvisible} transparent statusBarTranslucent>
+            <Filter1 setCheckVisible={setCheckVisible} />
+          </Modal>
+          <Pressable onPress={() => setCategoryVisible(true)}>
+            <Text style={styles.textStyle}>주점 종류</Text>
+          </Pressable>
+          <Modal visible={categoryVisible} transparent statusBarTranslucent>
+            <Filter2 setCategoryVisible={setCategoryVisible} />
+          </Modal>
+          <Pressable onPress={() => setLiquorVisible(true)}>
+            <Text style={styles.textStyle}>주종</Text>
+          </Pressable>
+          <Modal visible={liquorVisible} transparent statusBarTranslucent>
+            <Filter3 setLiquorVisible={setLiquorVisible} />
+          </Modal>
+          <Pressable onPress={() => setFavorLocation(true)}>
+            <Text style={styles.textStyle}>선호 지역</Text>
+          </Pressable>
+          <Modal visible={favorLocation} transparent statusBarTranslucent>
+            <Filter4 setFavorLocation={setFavorLocation} />
+          </Modal>
+        </View>
+        <Pressable
+          style={styles.reservation}
+          onPress={() => Alert.alert('예약 현황')}>
+          <Text style={{color: 'white'}}>예약 현황</Text>
+          <Text style={{color: 'white'}}> {`>`} </Text>
+        </Pressable>
+        <NaverMapView
+          style={{width: '100%', height: '100%'}}
+          zoomControl={false}
+          center={{
+            zoom: 16,
+            tilt: 10,
+            latitude: myPosition.latitude,
+            longitude: myPosition.longitude,
+          }}>
+          {markers &&
+            markers.map(
+              (store: {
+                id: number;
+                title: string;
+                coordinate: {latitude: number; longitude: number};
+              }) => (
+                <Marker
+                  key={store.id}
+                  coordinate={store.coordinate}
+                  width={30}
+                  height={30}
+                  anchor={{x: 0.5, y: 0.5}}
+                  caption={{text: store.title}}
+                  image={require('../assets/mapIcon/icon_location.png')}
+                />
+              ),
+            )}
+        </NaverMapView>
+        <View style={styles.currentStatus}>
+          <Pressable
+            onPress={() => {
+              setMyPosition({
+                latitude: myPosition.latitude - 0.00000000001, //카메라 이동(임시)
+                longitude: myPosition.longitude,
+              });
+            }}>
+            <Image
+              source={require('../assets/mapIcon/icon_current_location.png')}
+            />
+          </Pressable>
         </View>
       </View>
     </SafeAreaView>
@@ -249,6 +259,36 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  inputBox: {
+    height: Dimensions.get('window').height / 11,
+    backgroundColor: '#fff',
+    flex: 9,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    // borderColor: '#ccc',
+    // borderWidth: 1,
+  },
+  input: {
+    backgroundColor: '#F2F2F2',
+    flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 15,
+    fontSize: 14,
+  },
+  btnSearch: {
+    width: '80%',
+    height: '100%',
+    backgroundColor: '#fff',
+    flex: 1,
+    resizeMode: 'contain',
+  },
+  textStyle: {
+    fontSize: 14,
+    padding: 10,
   },
 });
 
