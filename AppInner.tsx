@@ -2,10 +2,13 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import {useState} from 'react';
 
+import Start from './src/pages/Start';
 import SignIn from './src/pages/SignIn';
 import SignUp from './src/pages/SignUp';
+
 import StoreMap from './src/pages/StoreMap';
 import Setting from './src/pages/Setting';
 import {Modal, Pressable, Text, View} from 'react-native';
@@ -16,6 +19,7 @@ export type LoggedInParamList = {
 };
 
 export type RootStackParamList = {
+  Start: undefined;
   SignIn: undefined;
   SignUp: undefined;
 };
@@ -34,7 +38,7 @@ const MyPage = () => {
 };
 
 function AppInner() {
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [favoriteVisible, setFavoriteVisible] = useState(false);
   const [aroundVisible, setAroundVisible] = useState(false);
   const FavoriteModal = () => {
@@ -111,9 +115,20 @@ function AppInner() {
       ) : (
         <Stack.Navigator>
           <Stack.Screen
+            name="Start"
+            component={Start}
+            options={{
+              title: '시작',
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
             name="SignIn"
             component={SignIn}
-            options={{title: '로그인'}}
+            options={{
+              headerShown: false,
+              title: '로그인',
+            }}
           />
           <Stack.Screen
             name="SignUp"
