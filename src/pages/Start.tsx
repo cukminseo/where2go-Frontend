@@ -31,10 +31,14 @@ function Start({navigation}: StartScreenProps) {
       </Text>
       <View style={styles.selectButtonContainer}>
         <Pressable style={styles.selectButton} onPress={userSignIn}>
-          <Text style={styles.selectButtonText}>이용자로 시작</Text>
+          <Text style={[typoStyle.btn, styles.selectButtonText]}>
+            이용자로 시작
+          </Text>
         </Pressable>
         <Pressable style={styles.selectButton} onPress={ownersSignIn}>
-          <Text style={styles.selectButtonText}>사장님으로 시작</Text>
+          <Text style={[typoStyle.btn, styles.selectButtonText]}>
+            사장님으로 시작
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -52,14 +56,15 @@ const styles = StyleSheet.create({
   },
   selectButton: {
     backgroundColor: '#4E6D5E',
+    padding: 15,
     borderRadius: 12,
     marginBottom: 10,
     marginVertical: 7,
     marginHorizontal: 40,
   },
   selectButtonText: {
-    fontSize: 20,
-    margin: 20,
+    textAlign: 'center',
+    color: 'white',
   },
 });
 
