@@ -32,9 +32,8 @@
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
-				<!--네이버 맵-->
-            	<key>NMFClientId</key>
-             	<string>d7zngjmrq6</string>
+				<key>NMFClientId</key>
+    			<string>d7zngjmrq6</string>
 			</dict>
 		</dict>
 	</dict>
