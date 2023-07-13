@@ -25,17 +25,20 @@ function StoreMap() {
     latitude: number;
     longitude: number;
   } | null>(null);
+
+  //모든 주점 위치 ▶ markers에 초기 데이터 값 안 들어가고 있음. 추후 확인.
+  const [markers, setMarkers] = useState(storeData);
+
   //필터링
   const [checkvisible, setCheckVisible] = useState(false);
   const [categoryVisible, setCategoryVisible] = useState(false);
   const [liquorVisible, setLiquorVisible] = useState(false);
   const [favorLocation, setFavorLocation] = useState(false);
 
-  //모든 주점 위치
-  //const [markers, setMarkers] = useState(storeData);
+  //검색창
+  const [searchWord, setSearchWord] = useState('');
 
   useEffect(() => {
-    storeData;
     //현재 위치 정보 불러오기
     Geolocation.getCurrentPosition(
       info => {
@@ -72,6 +75,18 @@ function StoreMap() {
       coordinate: {latitude: 37.497175, longitude: 127.027926},
     },
   ];
+  const searchData = [
+    {
+      id: 1,
+      title: '서칭1',
+      coordinate: {latitude: 37.497175, longitude: 127.027299},
+    },
+    {
+      id: 2,
+      title: '서칭2',
+      coordinate: {latitude: 37.497175, longitude: 127.027926},
+    },
+  ];
   const storeData = data.map(store => {
     return {
       id: store.id,
@@ -87,13 +102,20 @@ function StoreMap() {
           <View style={{flexDirection: 'row'}}>
             <TextInput
               style={{backgroundColor: '#F2F2F2', flex: 1}}
-              placeholder="검색할 내용을 입력해 주세요. 예: 강남 시티뷰가 좋은 집"
-              //onChangeText={(text): void => setSearchWord(text)}
+              placeholder="검색할 내용을 입력해 주세요."
+              onChangeText={(text): void => setSearchWord(text)}
             />
             <Button
               title="검색하기"
               onPress={(): void => {
-                //setMyPosition({latitude: 37.56667, longitude: 126.97806});
+                const searchStore = searchData.map((store: any) => {
+                  return {
+                    id: store.id,
+                    title: store.title,
+                    coordinate: store.coordinate,
+                  };
+                });
+                setMarkers(searchStore);
                 // axiosInstance
                 //   .post('houses/search', {
                 //     searchWord,
@@ -135,10 +157,12 @@ function StoreMap() {
               <Filter4 setFavorLocation={setFavorLocation} />
             </Modal>
           </View>
-          <View style={styles.reservation}>
+          <Pressable
+            style={styles.reservation}
+            onPress={() => Alert.alert('예약 현황')}>
             <Text style={{color: 'white'}}>예약 현황</Text>
             <Text style={{color: 'white'}}> {`>`} </Text>
-          </View>
+          </Pressable>
           <NaverMapView
             style={{width: '100%', height: '100%'}}
             zoomControl={false}
@@ -148,8 +172,8 @@ function StoreMap() {
               latitude: myPosition.latitude,
               longitude: myPosition.longitude,
             }}>
-            {storeData &&
-              storeData.map(
+            {markers &&
+              markers.map(
                 (store: {
                   id: number;
                   title: string;
@@ -157,10 +181,7 @@ function StoreMap() {
                 }) => (
                   <Marker
                     key={store.id}
-                    coordinate={{
-                      latitude: store.coordinate.latitude,
-                      longitude: store.coordinate.longitude,
-                    }}
+                    coordinate={store.coordinate}
                     width={30}
                     height={30}
                     anchor={{x: 0.5, y: 0.5}}
