@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
+import userSlice from '../slices/user';
 import storeMapSlice from '../slices/storeMap';
 
 const rootReducer = combineReducers({
   //slice 내용 적으면 됨.
+  user: userSlice.reducer,
   storeMap: storeMapSlice.reducer,
 });
 
