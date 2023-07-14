@@ -7,7 +7,7 @@ const Filter2 = props => {
   return (
     <View style={styles.filterModalBox}>
       <View style={styles.filterModal}>
-        <Text>주점 종류를 선택해주세요</Text>
+        <Text style={{...styles.fontStyle, color: '#333333'}}>주점 종류를 선택해주세요</Text>
         <View style={styles.checkbox}>
           <BouncyCheckbox
             size={24}
@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    //padding: 35,
     width: '80%',
     height: '25%',
     paddingTop: 20,
