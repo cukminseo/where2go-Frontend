@@ -12,6 +12,7 @@ import SignUp from './src/pages/SignUp';
 import StoreMap from './src/pages/StoreMap';
 import Setting from './src/pages/Setting';
 import {Modal, Pressable, Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export type LoggedInParamList = {
   StoreMap: undefined;
@@ -49,7 +50,9 @@ function AppInner() {
           animationType="slide"
           visible={favoriteVisible}
           statusBarTranslucent>
-          <Text style={{textAlign: 'center'}}>Create Posts !! This is Modal</Text>
+          <Text style={{textAlign: 'center'}}>
+            Create Posts !! This is Modal
+          </Text>
           <Pressable
             onPress={() => {
               setFavoriteVisible(!favoriteVisible);

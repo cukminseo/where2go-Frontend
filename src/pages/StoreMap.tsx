@@ -10,6 +10,7 @@ import {
   Modal,
 } from 'react-native';
 import NaverMapView, {Marker, Path} from 'react-native-nmap';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Filter1 from '../components/Filter1';
 import Filter2 from '../components/Filter2';
 import Filter3 from '../components/Filter3';
@@ -24,7 +25,7 @@ function StoreMap() {
   const [favorLocation, setFavorLocation] = useState(false);
 
   return (
-    <View>
+    <SafeAreaView>
       <View
         //화면 꽉 차게
         style={{
@@ -104,7 +105,7 @@ function StoreMap() {
           />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
