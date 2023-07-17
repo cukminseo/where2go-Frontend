@@ -4,106 +4,146 @@ import {useState} from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const Filter3 = props => {
+  const liquors = [
+    '칵테일',
+    '와인바',
+    '소주, 맥주',
+    '생맥주',
+    '보드카',
+    '세계 맥주',
+    '막걸리',
+    '과일소주',
+    '시그니처',
+  ];
   return (
     <View style={styles.filterModalBox}>
       <View style={styles.filterModal}>
-        <Text style={{...styles.fontStyle, color: '#333333'}}>주종을 골라주세요</Text>
+        <Text style={{...styles.fontStyle, color: '#333333'}}>
+          주종을 골라주세요
+        </Text>
         <View style={styles.checkbox}>
           <BouncyCheckbox
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="칵테일"
+            text={liquors[0]}
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
             textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[0], isChecked);
+            }}
           />
           <BouncyCheckbox
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="와인바"
+            text={liquors[1]}
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
             textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[1], isChecked);
+            }}
           />
           <BouncyCheckbox
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="소주, 맥주"
+            text={liquors[2]}
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
             textContainerStyle={{marginLeft: 7}}
-          />
-          <BouncyCheckbox
-            style={{marginTop: 10}}
-            size={24}
-            fillColor="#4E6D5E"
-            unfillColor="#FFFFFF"
-            text="생맥주"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
-            textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
-          />
-          <BouncyCheckbox
-            style={{marginTop: 10}}
-            size={24}
-            fillColor="#4E6D5E"
-            unfillColor="#FFFFFF"
-            text="보드카"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
-            textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[2], isChecked);
+            }}
           />
           <BouncyCheckbox
             style={{marginTop: 10}}
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="세계 맥주"
+            text={liquors[3]}
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
             textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[3], isChecked);
+            }}
           />
           <BouncyCheckbox
             style={{marginTop: 10}}
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="막걸리"
+            text={liquors[4]}
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
             textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[4], isChecked);
+            }}
           />
           <BouncyCheckbox
             style={{marginTop: 10}}
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="과일소주"
+            text={liquors[5]}
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
             textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[5], isChecked);
+            }}
           />
           <BouncyCheckbox
             style={{marginTop: 10}}
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="시그니처"
+            text={liquors[6]}
             iconStyle={styles.iconStyle}
             innerIconStyle={styles.innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
             textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[6], isChecked);
+            }}
+          />
+          <BouncyCheckbox
+            style={{marginTop: 10}}
+            size={24}
+            fillColor="#4E6D5E"
+            unfillColor="#FFFFFF"
+            text={liquors[7]}
+            iconStyle={styles.iconStyle}
+            innerIconStyle={styles.innerIconStyle}
+            textStyle={{textDecorationLine: 'none'}}
+            textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[7], isChecked);
+            }}
+          />
+          <BouncyCheckbox
+            style={{marginTop: 10}}
+            size={24}
+            fillColor="#4E6D5E"
+            unfillColor="#FFFFFF"
+            text={liquors[8]}
+            iconStyle={styles.iconStyle}
+            innerIconStyle={styles.innerIconStyle}
+            textStyle={{textDecorationLine: 'none'}}
+            textContainerStyle={{marginLeft: 7}}
+            onPress={(isChecked: boolean) => {
+              console.log(liquors[8], isChecked);
+            }}
           />
         </View>
         <View style={{flexDirection: 'row', flex: 1}}>

@@ -3,12 +3,12 @@ import {Pressable, Text, View, StyleSheet} from 'react-native';
 import {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/reducer';
-import filterSlice from '../slices/filter';
+import filter1Slice from '../slices/filter1';
 import {useAppDispatch} from '../store';
 
 const Filter1 = props => {
   const dispatch = useAppDispatch();
-  const number = useSelector((state: RootState) => state.filter.number);
+  const number = useSelector((state: RootState) => state.filter1.number);
 
   return (
     <View style={styles.filterModalBox}>
@@ -18,7 +18,7 @@ const Filter1 = props => {
           <Pressable
             style={styles.btnNumber}
             onPress={() =>
-              dispatch(filterSlice.actions.decreaseNumber(number))
+              dispatch(filter1Slice.actions.decreaseNumber(number))
             }>
             <Text style={styles.btnFontStyle}>-</Text>
           </Pressable>
@@ -34,7 +34,7 @@ const Filter1 = props => {
           <Pressable
             style={styles.btnNumber}
             onPress={() =>
-              dispatch(filterSlice.actions.increaseNumber(number))
+              dispatch(filter1Slice.actions.increaseNumber(number))
             }>
             <Text style={styles.btnFontStyle}>+</Text>
           </Pressable>
@@ -45,7 +45,7 @@ const Filter1 = props => {
               style={styles.fontStyle}
               onPress={() => {
                 props.setCheckVisible(false);
-                dispatch(filterSlice.actions.setNumber());
+                dispatch(filter1Slice.actions.setNumber());
               }}>
               취소
             </Text>

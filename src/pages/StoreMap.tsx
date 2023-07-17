@@ -34,7 +34,6 @@ function StoreMap() {
   const searchStoreList = useSelector(
     (state: RootState) => state.storeMap.searchStores,
   );
-  const number = useSelector((state: RootState) => state.filter.number);
 
   //현재 위치
   const [myPosition, setMyPosition] = useState<{
@@ -290,6 +289,7 @@ function StoreMap() {
               });
             }}>
             <Image
+              style={styles.btnCurrentStatus}
               source={require('../assets/mapIcon/icon_current_location.png')}
             />
           </Pressable>
@@ -319,6 +319,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '90%',
     alignSelf: 'auto',
+  },
+  btnCurrentStatus: {
+    width: 70,
+    height: 70,
+    resizeMode: 'contain',
   },
   filterModalBox: {
     flex: 1,
