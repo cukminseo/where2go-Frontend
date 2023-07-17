@@ -34,6 +34,7 @@ function StoreMap() {
   const searchStoreList = useSelector(
     (state: RootState) => state.storeMap.searchStores,
   );
+  const number = useSelector((state: RootState) => state.filter.number);
 
   //현재 위치
   const [myPosition, setMyPosition] = useState<{

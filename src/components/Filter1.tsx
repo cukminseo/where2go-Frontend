@@ -1,31 +1,25 @@
 import * as React from 'react';
-import {Pressable, Text, View, StyleSheet, Button} from 'react-native';
+import {Pressable, Text, View, StyleSheet} from 'react-native';
 import {useState} from 'react';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store/reducer';
+import filterSlice from '../slices/filter';
+import {useAppDispatch} from '../store';
 
 const Filter1 = props => {
-  const [number, setNumber] = useState(0);
-  const increaseNumber = (num: number) => {
-    let a = num;
-    a++;
-    setNumber(a);
-  };
-  const decreaseNumber = (num: number) => {
-    let a = num;
-    a--;
-    setNumber(a);
-    if (a < 0) {
-      setNumber(0);
-    }
-  };
+  const dispatch = useAppDispatch();
+  const number = useSelector((state: RootState) => state.filter.number);
 
   return (
     <View style={styles.filterModalBox}>
       <View style={styles.filterModal}>
         <Text style={{...styles.fontStyle, color: '#333333'}}>인원 수</Text>
-        <View style={{flexDirection: 'row', flex:1}}>
+        <View style={{flexDirection: 'row', flex: 1}}>
           <Pressable
             style={styles.btnNumber}
-            onPress={() => decreaseNumber(number)}>
+            onPress={() =>
+              dispatch(filterSlice.actions.decreaseNumber(number))
+            }>
             <Text style={styles.btnFontStyle}>-</Text>
           </Pressable>
           <View
@@ -39,16 +33,19 @@ const Filter1 = props => {
           </View>
           <Pressable
             style={styles.btnNumber}
-            onPress={() => increaseNumber(number)}>
+            onPress={() =>
+              dispatch(filterSlice.actions.increaseNumber(number))
+            }>
             <Text style={styles.btnFontStyle}>+</Text>
           </Pressable>
         </View>
-        <View style={{flexDirection: 'row', flex:1}}>
+        <View style={{flexDirection: 'row', flex: 1}}>
           <Pressable style={styles.btnCheck}>
             <Text
               style={styles.fontStyle}
               onPress={() => {
-                props.setCheckVisible(false), setNumber(0);
+                props.setCheckVisible(false);
+                dispatch(filterSlice.actions.setNumber());
               }}>
               취소
             </Text>
@@ -63,7 +60,7 @@ const Filter1 = props => {
             <Text
               style={styles.fontStyle}
               onPress={() => {
-                props.setCheckVisible(false), setNumber(0);
+                props.setCheckVisible(false);
               }}>
               확인
             </Text>
