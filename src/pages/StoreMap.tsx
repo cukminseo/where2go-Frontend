@@ -42,7 +42,7 @@ function StoreMap() {
   } | null>(null);
 
   //필터링
-  const [checkvisible, setCheckVisible] = useState(false);
+  const [numberVisible, setNumberVisible] = useState(false);
   const [categoryVisible, setCategoryVisible] = useState(false);
   const [liquorVisible, setLiquorVisible] = useState(false);
   const [favorLocation, setFavorLocation] = useState(false);
@@ -181,11 +181,11 @@ function StoreMap() {
 
   return (
     <SafeAreaView>
-      <View style={styles.fill}>
-        <View style={{flexDirection: 'row', backgroundColor: 'white'}}>
-          <View style={styles.inputBox}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.header__inputBox}>
             <TextInput
-              style={styles.input}
+              style={styles.header__input}
               placeholder="검색할 내용을 입력해 주세요."
               onChangeText={(text): void => setSearchWord(text)}
             />
@@ -213,32 +213,32 @@ function StoreMap() {
               //   });
             }}>
             <Image
-              style={styles.btnSearch}
+              style={styles.header__btnSearch}
               source={require('../assets/mapIcon/icon_search.png')}
             />
           </Pressable>
         </View>
         <View style={styles.filterBox}>
-          <Pressable onPress={() => setCheckVisible(true)}>
-            <Text style={styles.textStyle}>인원수</Text>
+          <Pressable onPress={() => setNumberVisible(true)}>
+            <Text style={styles.filterBox__textStyle}>인원수</Text>
           </Pressable>
-          <Modal visible={checkvisible} transparent statusBarTranslucent>
-            <Filter1 setCheckVisible={setCheckVisible} />
+          <Modal visible={numberVisible} transparent statusBarTranslucent>
+            <Filter1 setCheckVisible={setNumberVisible} />
           </Modal>
           <Pressable onPress={() => setCategoryVisible(true)}>
-            <Text style={styles.textStyle}>주점 종류</Text>
+            <Text style={styles.filterBox__textStyle}>주점 종류</Text>
           </Pressable>
           <Modal visible={categoryVisible} transparent statusBarTranslucent>
             <Filter2 setCategoryVisible={setCategoryVisible} />
           </Modal>
           <Pressable onPress={() => setLiquorVisible(true)}>
-            <Text style={styles.textStyle}>주종</Text>
+            <Text style={styles.filterBox__textStyle}>주종</Text>
           </Pressable>
           <Modal visible={liquorVisible} transparent statusBarTranslucent>
             <Filter3 setLiquorVisible={setLiquorVisible} />
           </Modal>
           <Pressable onPress={() => setFavorLocation(true)}>
-            <Text style={styles.textStyle}>선호 지역</Text>
+            <Text style={styles.filterBox__textStyle}>선호 지역</Text>
           </Pressable>
           <Modal visible={favorLocation} transparent statusBarTranslucent>
             <Filter4 setFavorLocation={setFavorLocation} />
@@ -247,11 +247,11 @@ function StoreMap() {
         <Pressable
           style={styles.reservation}
           onPress={() => Alert.alert('예약 현황')}>
-          <Text style={{color: 'white'}}>예약 현황</Text>
-          <Text style={{color: 'white'}}> {`>`} </Text>
+          <Text style={styles.reservation__textStyle}>예약 현황</Text>
+          <Text style={styles.reservation__textStyle}> {`>`} </Text>
         </Pressable>
         <NaverMapView
-          style={{width: '100%', height: '100%'}}
+          style={styles.mapContainer}
           zoomControl={false}
           center={{
             zoom: 16,
@@ -289,7 +289,7 @@ function StoreMap() {
               });
             }}>
             <Image
-              style={styles.btnCurrentStatus}
+              style={styles.currentStatus__btnStatus}
               source={require('../assets/mapIcon/icon_current_location.png')}
             />
           </Pressable>
@@ -300,53 +300,15 @@ function StoreMap() {
 }
 
 const styles = StyleSheet.create({
-  fill: {
+  container: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
-  filterBox: {
+  header: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
     backgroundColor: 'white',
   },
-  reservation: {
-    flexDirection: 'row',
-    backgroundColor: '#4E6D5E',
-    justifyContent: 'flex-end',
-    padding: 5,
-  },
-  currentStatus: {
-    position: 'absolute',
-    top: '90%',
-    alignSelf: 'auto',
-  },
-  btnCurrentStatus: {
-    width: 70,
-    height: 70,
-    resizeMode: 'contain',
-  },
-  filterModalBox: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  filterModal: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  inputBox: {
+  header__inputBox: {
     height: Dimensions.get('window').height / 11,
     backgroundColor: '#fff',
     flex: 9,
@@ -355,7 +317,7 @@ const styles = StyleSheet.create({
     // borderColor: '#ccc',
     // borderWidth: 1,
   },
-  input: {
+  header__input: {
     backgroundColor: '#F2F2F2',
     flex: 1,
     paddingVertical: 10,
@@ -365,16 +327,44 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     fontSize: 14,
   },
-  btnSearch: {
+  header__btnSearch: {
     width: '80%',
     height: '100%',
     backgroundColor: '#fff',
     flex: 1,
     resizeMode: 'contain',
   },
-  textStyle: {
+  filterBox: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: 'white',
+  },
+  filterBox__textStyle: {
     fontSize: 14,
     padding: 10,
+  },
+  reservation: {
+    flexDirection: 'row',
+    backgroundColor: '#4E6D5E',
+    justifyContent: 'flex-end',
+    padding: 5,
+  },
+  reservation__textStyle: {
+    color: 'white',
+  },
+  mapContainer: {
+    width: '100%',
+    height: '100%',
+  },
+  currentStatus: {
+    position: 'absolute',
+    top: '90%',
+    alignSelf: 'auto',
+  },
+  currentStatus__btnStatus: {
+    width: 70,
+    height: 70,
+    resizeMode: 'contain',
   },
 });
 

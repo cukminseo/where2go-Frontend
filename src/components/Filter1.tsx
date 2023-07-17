@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Pressable, Text, View, StyleSheet} from 'react-native';
+import {Pressable, Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/reducer';
@@ -11,38 +11,34 @@ const Filter1 = props => {
   const number = useSelector((state: RootState) => state.filter1.number);
 
   return (
-    <View style={styles.filterModalBox}>
+    <SafeAreaView style={styles.filterContainer}>
       <View style={styles.filterModal}>
-        <Text style={{...styles.fontStyle, color: '#333333'}}>인원 수</Text>
-        <View style={{flexDirection: 'row', flex: 1}}>
+        <Text style={{...styles.check__textStyle, color: '#333333'}}>
+          인원 수
+        </Text>
+        <View style={styles.filterModal__content}>
           <Pressable
-            style={styles.btnNumber}
+            style={styles.filterModal__btnNumber}
             onPress={() =>
               dispatch(filter1Slice.actions.decreaseNumber(number))
             }>
-            <Text style={styles.btnFontStyle}>-</Text>
+            <Text style={styles.filterModal__textStyle}>-</Text>
           </Pressable>
-          <View
-            style={{
-              ...styles.btnNumber,
-              justifyContent: 'center',
-              backgroundColor: '#F2F2F2',
-              width: 68,
-            }}>
-            <Text style={styles.btnFontStyle}>{number}</Text>
+          <View style={styles.filterModal__number}>
+            <Text style={styles.filterModal__textStyle}>{number}</Text>
           </View>
           <Pressable
-            style={styles.btnNumber}
+            style={styles.filterModal__btnNumber}
             onPress={() =>
               dispatch(filter1Slice.actions.increaseNumber(number))
             }>
-            <Text style={styles.btnFontStyle}>+</Text>
+            <Text style={styles.filterModal__textStyle}>+</Text>
           </Pressable>
         </View>
-        <View style={{flexDirection: 'row', flex: 1}}>
-          <Pressable style={styles.btnCheck}>
+        <View style={styles.check}>
+          <Pressable style={styles.check__btnCancel}>
             <Text
-              style={styles.fontStyle}
+              style={styles.check__textStyle}
               onPress={() => {
                 props.setCheckVisible(false);
                 dispatch(filter1Slice.actions.setNumber());
@@ -50,15 +46,9 @@ const Filter1 = props => {
               취소
             </Text>
           </Pressable>
-          <Pressable
-            style={{
-              ...styles.btnCheck,
-              backgroundColor: '#4E6D5E',
-              borderBottomLeftRadius: 0,
-              borderBottomRightRadius: 20,
-            }}>
+          <Pressable style={styles.check__btnAllow}>
             <Text
-              style={styles.fontStyle}
+              style={styles.check__textStyle}
               onPress={() => {
                 props.setCheckVisible(false);
               }}>
@@ -67,12 +57,12 @@ const Filter1 = props => {
           </Pressable>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  filterModalBox: {
+  filterContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -95,16 +85,15 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  fontStyle: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: 'white',
+  filterModal__content: {
+    flexDirection: 'row',
+    flex: 1,
   },
-  btnFontStyle: {
+  filterModal__textStyle: {
     fontSize: 20,
     textAlign: 'center',
   },
-  btnNumber: {
+  filterModal__btnNumber: {
     width: 56,
     height: 56,
     backgroundColor: '#E7F3F2',
@@ -112,12 +101,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 8,
   },
-  btnCheck: {
+  filterModal__number: {
+    width: 68,
+    height: 56,
+    backgroundColor: '#F2F2F2',
+    borderRadius: 12,
+    justifyContent: 'center',
+    margin: 8,
+  },
+  check: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  check__textStyle: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+  },
+  check__btnCancel: {
     flex: 1,
     justifyContent: 'center',
     marginTop: 20,
     borderBottomLeftRadius: 20,
     backgroundColor: '#949494',
+  },
+  check__btnAllow: {
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: 20,
+    backgroundColor: '#4E6D5E',
+    borderBottomRightRadius: 20,
   },
 });
 
