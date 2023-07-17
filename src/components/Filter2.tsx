@@ -2,106 +2,129 @@ import * as React from 'react';
 import {Pressable, Text, View, StyleSheet, Image} from 'react-native';
 import {useState} from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Filter2 = props => {
+  const categories = [
+    '생맥주집',
+    '이자카야',
+    '포장마차',
+    '대폿집',
+    '개인 룸',
+    '바 형태',
+  ];
   return (
-    <View style={styles.filterModalBox}>
+    <SafeAreaView style={styles.filterContainer}>
       <View style={styles.filterModal}>
-        <Text style={{...styles.fontStyle, color: '#333333'}}>주점 종류를 선택해주세요</Text>
+        <Text style={{...styles.check__textStyle, color: '#333333'}}>
+          주점 종류를 선택해주세요
+        </Text>
         <View style={styles.checkbox}>
           <BouncyCheckbox
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="생맥주집"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
+            text={categories[0]}
+            iconStyle={styles.checkbox__iconStyle}
+            innerIconStyle={styles.checkbox__innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
+            textContainerStyle={styles.checkbox__textContainer}
+            onPress={(isChecked: boolean) => {
+              console.log(categories[0], isChecked);
+            }}
           />
           <BouncyCheckbox
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="이자카야"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
+            text={categories[1]}
+            iconStyle={styles.checkbox__iconStyle}
+            innerIconStyle={styles.checkbox__innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
+            textContainerStyle={styles.checkbox__textContainer}
+            onPress={(isChecked: boolean) => {
+              console.log(categories[1], isChecked);
+            }}
           />
           <BouncyCheckbox
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="포장마차"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
+            text={categories[2]}
+            iconStyle={styles.checkbox__iconStyle}
+            innerIconStyle={styles.checkbox__innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
+            textContainerStyle={styles.checkbox__textContainer}
+            onPress={(isChecked: boolean) => {
+              console.log(categories[2], isChecked);
+            }}
           />
           <BouncyCheckbox
-            style={{marginTop: 10}}
+            style={styles.checkbox__subContent}
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="대폿집"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
+            text={categories[3]}
+            iconStyle={styles.checkbox__iconStyle}
+            innerIconStyle={styles.checkbox__innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
+            textContainerStyle={styles.checkbox__textContainer}
+            onPress={(isChecked: boolean) => {
+              console.log(categories[3], isChecked);
+            }}
           />
           <BouncyCheckbox
-            style={{marginTop: 10}}
+            style={styles.checkbox__subContent}
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="개인 룸"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
+            text={categories[4]}
+            iconStyle={styles.checkbox__iconStyle}
+            innerIconStyle={styles.checkbox__innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
+            textContainerStyle={styles.checkbox__textContainer}
+            onPress={(isChecked: boolean) => {
+              console.log(categories[4], isChecked);
+            }}
           />
           <BouncyCheckbox
-            style={{marginTop: 10}}
+            style={styles.checkbox__subContent}
             size={24}
             fillColor="#4E6D5E"
             unfillColor="#FFFFFF"
-            text="바 형태"
-            iconStyle={styles.iconStyle}
-            innerIconStyle={styles.innerIconStyle}
+            text={categories[5]}
+            iconStyle={styles.checkbox__iconStyle}
+            innerIconStyle={styles.checkbox__innerIconStyle}
             textStyle={{textDecorationLine: 'none'}}
-            textContainerStyle={{marginLeft: 7}}
+            textContainerStyle={styles.checkbox__textContainer}
+            onPress={(isChecked: boolean) => {
+              console.log(categories[5], isChecked);
+            }}
           />
         </View>
-        <View style={{flexDirection: 'row', flex: 1}}>
-          <Pressable style={styles.btnCheck}>
+        <View style={styles.check}>
+          <Pressable style={styles.check__btnCancel}>
             <Text
-              style={styles.fontStyle}
+              style={styles.check__textStyle}
               onPress={() => props.setCategoryVisible(false)}>
               취소
             </Text>
           </Pressable>
-          <Pressable
-            style={{
-              ...styles.btnCheck,
-              backgroundColor: '#4E6D5E',
-              borderBottomLeftRadius: 0,
-              borderBottomRightRadius: 20,
-            }}>
+          <Pressable style={styles.check__btnAllow}>
             <Text
-              style={styles.fontStyle}
+              style={styles.check__textStyle}
               onPress={() => props.setCategoryVisible(false)}>
               확인
             </Text>
           </Pressable>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  filterModalBox: {
+  filterContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -131,32 +154,30 @@ const styles = StyleSheet.create({
     marginTop: 20,
     margin: 10,
   },
-  fontStyle: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: 'white',
-  },
-  btnFontStyle: {
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  btnNumber: {
-    width: 56,
-    height: 56,
-    backgroundColor: '#E7F3F2',
-    borderRadius: 12,
-    justifyContent: 'center',
-    margin: 8,
-  },
-  btnCheck: {
+  checkbox__subContent: {marginTop: 10},
+  checkbox__textContainer: {marginLeft: 7},
+  checkbox__iconStyle: {borderColor: '#4E6D5E', borderRadius: 8},
+  checkbox__innerIconStyle: {borderWidth: 2, borderRadius: 8},
+  check: {flexDirection: 'row', flex: 1},
+  check__btnCancel: {
     flex: 1,
     justifyContent: 'center',
     marginTop: 10,
     borderBottomLeftRadius: 20,
     backgroundColor: '#949494',
   },
-  iconStyle: {borderColor: '#4E6D5E', borderRadius: 8},
-  innerIconStyle: {borderWidth: 2, borderRadius: 8},
+  check__btnAllow: {
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: 10,
+    backgroundColor: '#4E6D5E',
+    borderBottomRightRadius: 20,
+  },
+  check__textStyle: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+  },
 });
 
 export default Filter2;
