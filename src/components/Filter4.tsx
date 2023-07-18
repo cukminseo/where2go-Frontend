@@ -6,6 +6,7 @@ import {
   StyleSheet,
   FlatList,
   Dimensions,
+  Image,
 } from 'react-native';
 import {useState} from 'react';
 
@@ -17,22 +18,33 @@ const Filter4 = props => {
   return (
     <View style={styles.filterModalBox}>
       <View style={styles.filterModal}>
-        <Pressable style={{alignSelf: 'flex-start'}}>
-          <Text onPress={() => props.setFavorLocation(false)}>X</Text>
+        <Pressable
+          style={{alignSelf: 'flex-start'}}
+          onPress={() => props.setFavorLocation(false)}>
+          <Image
+            style={{width: 24, height: 24}}
+            source={require('../assets/mapIcon/icon_x.png')}
+          />
         </Pressable>
-        <Text>등록된 선호 지역입니다 :)</Text>
+        <Text style={{fontSize: 16, color: '#333333'}}>
+          등록된 선호 지역입니다 :)
+        </Text>
         <View
           style={{
             flexDirection: 'row',
             marginTop: 20,
+            maxHeight: '90%',
           }}>
           <FlatList
             data={arr}
             keyExtractor={item => item.toString()}
-            renderItem={({item}) => <Text>{item}</Text>}
+            renderItem={({item}) => (
+              <View style={{borderColor: '#ccc', borderBottomWidth:1,}}>
+                <Text style={{fontSize: 16, margin: 20}}>{item}</Text>
+              </View>
+            )}
           />
         </View>
-        <View style={{flexDirection: 'row', marginTop: 20}}></View>
       </View>
     </View>
   );
