@@ -18,12 +18,12 @@ import {typoStyle} from './styles.js';
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 function SignIn({navigation}: SignInScreenProps) {
-  const mainLogo = require('../assets/images/biType01ColorPositive.png');
-  const iconBack = require('../assets/images/iconBack.png');
-  const loginOrBar = require('../assets/images/loginOrBar.png');
-  const bi_google = require('../assets/images/bi_google.png');
-  const bi_kakao = require('../assets/images/bi_kakao.png');
-  const idFindPwFindBar = require('../assets/images/idFindPwFindBar.png');
+  const mainLogo = require('../assets/biType01ColorPositive.png');
+  const iconBack = require('../assets/iconBack.png');
+  const loginOrBar = require('../assets/loginImages/loginOrBar.png');
+  const bi_google = require('../assets/loginImages/bi_google.png');
+  const bi_kakao = require('../assets/loginImages/bi_kakao.png');
+  const idFindPwFindBar = require('../assets/loginImages/idFindPwFindBar.png');
   const goBack = () => {
     navigation.goBack();
   };
