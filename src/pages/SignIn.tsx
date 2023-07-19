@@ -45,7 +45,7 @@ function SignIn({navigation}: SignInScreenProps) {
 
   const toSignUp = useCallback(() => {
     //회원가입버튼 콜백
-    navigation.navigate('SignUp');
+    navigation.navigate('Agreement');
   }, [navigation]);
   const toLoginKakao = useCallback(() => {
     //카카오로그인 콜백

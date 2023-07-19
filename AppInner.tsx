@@ -7,6 +7,7 @@ import {useState} from 'react';
 
 import Start from './src/pages/Start';
 import SignIn from './src/pages/SignIn';
+import Agreement from './src/pages/Agreement';
 import SignUp from './src/pages/SignUp';
 
 import StoreMap from './src/pages/StoreMap';
@@ -22,6 +23,7 @@ export type LoggedInParamList = {
 export type RootStackParamList = {
   Start: undefined;
   SignIn: undefined;
+  Agreement: undefined;
   SignUp: undefined;
 };
 
@@ -134,9 +136,20 @@ function AppInner() {
             }}
           />
           <Stack.Screen
+            name="Agreement"
+            component={Agreement}
+            options={{
+              headerShown: false,
+              title: '약관동의',
+            }}
+          />
+          <Stack.Screen
             name="SignUp"
             component={SignUp}
-            options={{title: '회원가입'}}
+            options={{
+              headerShown: false,
+              title: '회원가입',
+            }}
           />
         </Stack.Navigator>
       )}
