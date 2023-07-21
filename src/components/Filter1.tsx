@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   check: {
     flexDirection: 'row',
-    height: '40%',
+    flex: 1,
   },
   check__textStyle: {
     fontSize: 16,

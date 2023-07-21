@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
   },
   currentStatus: {
     position: 'absolute',
-    top: '90%',
+    top: Dimensions.get('window').height * 0.85,
     alignSelf: 'auto',
   },
   currentStatus__btnStatus: {
