@@ -40,7 +40,7 @@ const Filter1 = props => {
             <Text
               style={styles.check__textStyle}
               onPress={() => {
-                props.setCheckVisible(false);
+                props.setNumberVisible(false);
                 dispatch(filter1Slice.actions.setNumber());
               }}>
               취소
@@ -50,7 +50,7 @@ const Filter1 = props => {
             <Text
               style={styles.check__textStyle}
               onPress={() => {
-                props.setCheckVisible(false);
+                props.setNumberVisible(false);
               }}>
               확인
             </Text>

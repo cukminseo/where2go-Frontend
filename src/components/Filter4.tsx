@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 import {useState} from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const Filter4 = props => {
   const arr = [];
@@ -16,7 +17,7 @@ const Filter4 = props => {
     arr.push('가상의 선호 지역 명');
   }
   return (
-    <View style={styles.filterModalBox}>
+    <SafeAreaView style={styles.filterModalBox}>
       <View style={styles.filterModal}>
         <Pressable
           style={{alignSelf: 'flex-start'}}
@@ -46,7 +47,7 @@ const Filter4 = props => {
           />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   filterModal: {
     margin: 20,
     backgroundColor: 'white',
-    height: Dimensions.get('window').height,
+    height: Dimensions.get('window').height * 0.85,
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
