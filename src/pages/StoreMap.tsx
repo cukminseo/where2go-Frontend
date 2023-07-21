@@ -9,6 +9,7 @@ import {
   Modal,
   Image,
   Pressable,
+  ImageBackground,
 } from 'react-native';
 import NaverMapView, {Marker} from 'react-native-nmap';
 import Geolocation from '@react-native-community/geolocation';
@@ -19,10 +20,12 @@ import Filter4 from '../components/Filter4';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useAppDispatch} from '../store';
 import storeMapSlice from '../slices/storeMap';
+import storeModalSlice from '../slices/storeModal';
 import axios, {AxiosError} from 'axios';
 import Config from 'react-native-config';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/reducer';
+import StoreModal from '../components/StoreModal';
 
 function StoreMap() {
   const dispatch = useAppDispatch();
@@ -33,6 +36,9 @@ function StoreMap() {
   );
   const searchStoreList = useSelector(
     (state: RootState) => state.storeMap.searchStores,
+  );
+  const storeModal = useSelector(
+    (state: RootState) => state.storeModal.detailVisible,
   );
 
   //현재 위치
@@ -223,7 +229,7 @@ function StoreMap() {
             <Text style={styles.filterBox__textStyle}>인원수</Text>
           </Pressable>
           <Modal visible={numberVisible} transparent statusBarTranslucent>
-            <Filter1 setCheckVisible={setNumberVisible} />
+            <Filter1 setNumberVisible={setNumberVisible} />
           </Modal>
           <Pressable onPress={() => setCategoryVisible(true)}>
             <Text style={styles.filterBox__textStyle}>주점 종류</Text>
@@ -261,6 +267,7 @@ function StoreMap() {
           }}>
           {console.log('storeData입니다', storeData)}
           {console.log('==============markerData', markers)}
+          {console.log('==============================', storeModal)}
           {markers &&
             markers.map(
               (store: {
@@ -276,7 +283,24 @@ function StoreMap() {
                   anchor={{x: 0.5, y: 0.5}}
                   caption={{text: store.title}}
                   image={require('../assets/mapIcon/icon_location.png')}
-                />
+                  onClick={(): void => {
+                    dispatch(storeModalSlice.actions.setDetailVisible());
+                    console.log('clicked', storeModal);
+                  }}>
+                  {!storeModal ? (
+                    <Image
+                      style={{width: 30, height: 30}}
+                      source={require('../assets/mapIcon/icon_location.png')}
+                    />
+                  ) : (
+                    <Modal
+                      animationType="fade"
+                      visible={storeModal}
+                      transparent>
+                      <StoreModal />
+                    </Modal>
+                  )}
+                </Marker>
               ),
             )}
         </NaverMapView>

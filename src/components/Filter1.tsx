@@ -40,7 +40,7 @@ const Filter1 = props => {
             <Text
               style={styles.check__textStyle}
               onPress={() => {
-                props.setCheckVisible(false);
+                props.setNumberVisible(false);
                 dispatch(filter1Slice.actions.setNumber());
               }}>
               취소
@@ -50,7 +50,7 @@ const Filter1 = props => {
             <Text
               style={styles.check__textStyle}
               onPress={() => {
-                props.setCheckVisible(false);
+                props.setNumberVisible(false);
               }}>
               확인
             </Text>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   check: {
     flexDirection: 'row',
-    flex: 1,
+    height: '40%',
   },
   check__textStyle: {
     fontSize: 16,
