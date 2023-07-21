@@ -1,29 +1,30 @@
 import * as React from 'react';
-import {useEffect, useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {
   Pressable,
   Text,
-  SafeAreaView,
   Dimensions,
   Animated,
   PanResponder,
-  Modal,
   StyleSheet,
   View,
   TouchableWithoutFeedback,
-  Image,
+  Modal,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/reducer';
 import {useAppDispatch} from '../store';
 import storeModalSlice from '../slices/storeModal';
+import StoreDetail from '../pages/StoreDetail';
+import Reservation from '../pages/Reservation';
 
 const StoreModal = () => {
-  //const [detailVisible, setDetailVisible] = useState(true);
   const dispatch = useAppDispatch();
   const storeModal = useSelector(
     (state: RootState) => state.storeModal.detailVisible,
   );
+  const [storeDetail, setStoreDetail] = useState(false);
+  const [reservation, setReservation] = useState(false);
 
   const screenHeight = Dimensions.get('window').height;
   const panY = useRef(new Animated.Value(screenHeight)).current; //
@@ -117,28 +118,31 @@ const StoreModal = () => {
           </Text>
         </View>
         <View style={styles.check}>
-          <Pressable style={styles.check__btnCancel}>
+          <Pressable
+            style={styles.check__btnCancel}
+            onPress={() => {
+              setReservation(true);
+              console.log('[바로예약]', '클릭했습니다.');
+            }}>
             <Text style={styles.check__textStyle}>바로 예약</Text>
+            <Modal animationType="slide" visible={reservation}>
+              <Reservation setReservation={setReservation} />
+            </Modal>
           </Pressable>
-          <Pressable style={styles.check__btnAllow}>
+          <Pressable
+            style={styles.check__btnAllow}
+            onPress={() => {
+              setStoreDetail(true);
+              console.log('[매장보기]', '클릭했습니다.');
+            }}>
             <Text style={styles.check__textStyle}>매장 보기</Text>
+            <Modal animationType="slide" visible={storeDetail}>
+              <StoreDetail setStoreDetail={setStoreDetail} />
+            </Modal>
           </Pressable>
         </View>
       </Animated.View>
     </View>
-    // <SafeAreaView style={{backgroundColor: 'white'}}>
-    //   <Text style={{textAlign: 'center'}}>Create Posts !! This is Modal</Text>
-    //   <Pressable>
-    //     <Text>hi</Text>
-    //   </Pressable>
-    //   <Text
-    //     onPress={() => {
-    //       dispatch(storeModalSlice.actions.setDetailVisible());
-    //       console.log('Modal clicked', storeModal);
-    //     }}>
-    //     취소
-    //   </Text>
-    // </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
