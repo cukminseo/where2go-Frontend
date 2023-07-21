@@ -27,7 +27,7 @@ const StoreModal = () => {
   const [reservation, setReservation] = useState(false);
 
   const screenHeight = Dimensions.get('window').height;
-  const panY = useRef(new Animated.Value(screenHeight)).current; //
+  const panY = useRef(new Animated.Value(screenHeight)).current;
   const translateY = panY.interpolate({
     // panY에 따라 BottomSheet의 y축 위치를 결정합니다.
     inputRange: [-1, 0, 1], // inputRage의 -1을 outpuRage의 0으로 치환하기 때문에 panY가 0보다 작아져도 BottomSheet의 y축 위치에는 변화가 없습니다.
@@ -95,31 +95,31 @@ const StoreModal = () => {
       </TouchableWithoutFeedback>
       <Animated.View
         style={{
-          ...styles.bottomSheetContainer,
+          ...styles.bottomModalContainer,
           transform: [{translateY: translateY}],
         }} // translateY 값을 지정해 BottomSheet의 위치를 조정합니다.
         {...panResponders.panHandlers}>
-        <View style={styles.filterModal__content}>
-          <View style={styles.filterModal__image} />
-          <View style={styles.filterModal__mainContent}>
-            <Text style={styles.filterModal__textStyle}>{storeName}</Text>
-            <Text style={styles.filterModal__textStyle}>
+        <View style={styles.bottomModal__content}>
+          <View style={styles.bottomModal__image} />
+          <View style={styles.bottomModal__mainContent}>
+            <Text style={styles.bottomModal__textStyle}>{storeName}</Text>
+            <Text style={styles.bottomModal__textStyle}>
               평균 응답률 : {answer}분 이내
             </Text>
-            <Text style={styles.filterModal__textStyle}>별점 : {star} / 5</Text>
+            <Text style={styles.bottomModal__textStyle}>별점 : {star} / 5</Text>
           </View>
         </View>
-        <View style={styles.filterModal__subContent}>
-          <Text style={styles.filterModal__textStyle}>
+        <View style={styles.bottomModal__subContent}>
+          <Text style={styles.bottomModal__textStyle}>
             예약 가능 좌석 수 : {seat}
           </Text>
-          <Text style={{...styles.filterModal__textStyle, color: '#FECC28'}}>
+          <Text style={{...styles.bottomModal__textStyle, color: '#FECC28'}}>
             [이벤트] 리뷰 작성시 콜라, 사이다 증정
           </Text>
         </View>
         <View style={styles.check}>
           <Pressable
-            style={styles.check__btnCancel}
+            style={styles.check__btnReservation}
             onPress={() => {
               setReservation(true);
               console.log('[바로예약]', '클릭했습니다.');
@@ -130,7 +130,7 @@ const StoreModal = () => {
             </Modal>
           </Pressable>
           <Pressable
-            style={styles.check__btnAllow}
+            style={styles.check__btnDetail}
             onPress={() => {
               setStoreDetail(true);
               console.log('[매장보기]', '클릭했습니다.');
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
-  bottomSheetContainer: {
+  bottomModalContainer: {
     height: 300,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
@@ -162,28 +162,28 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },
-  filterModal__image: {
+  bottomModal__image: {
     backgroundColor: 'gray',
     width: 100,
     height: 100,
   },
-  filterModal__content: {
+  bottomModal__content: {
     flexDirection: 'row',
     flex: 1,
     marginTop: 40,
     marginLeft: 10,
   },
-  filterModal__mainContent: {
+  bottomModal__mainContent: {
     alignItems: 'flex-start',
     marginLeft: 10,
   },
-  filterModal__subContent: {
+  bottomModal__subContent: {
     flex: 1,
     alignItems: 'flex-start',
     marginTop: 30,
     marginLeft: 10,
   },
-  filterModal__textStyle: {
+  bottomModal__textStyle: {
     fontSize: 20,
     textAlign: 'center',
     margin: 3,
@@ -197,12 +197,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
   },
-  check__btnCancel: {
+  check__btnReservation: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#4E6D5E',
   },
-  check__btnAllow: {
+  check__btnDetail: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#8DBBA7',
