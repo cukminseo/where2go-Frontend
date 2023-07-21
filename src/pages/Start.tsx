@@ -8,12 +8,13 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useAppDispatch} from '../store';
 import {RootStackParamList} from '../../App';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Text, View, Pressable, StyleSheet} from 'react-native';
+import {Text, View, Pressable, StyleSheet, Image} from 'react-native';
 import {typoStyle} from './styles.js';
 
 type StartScreenProps = NativeStackScreenProps<RootStackParamList, 'Start'>;
 
 function Start({navigation}: StartScreenProps) {
+  const logo = require('../assets/biType02ColorPositive.png');
   const dispatch = useAppDispatch();
   const userSignIn = useCallback(() => {
     //사용자 로그인 setting
@@ -25,10 +26,18 @@ function Start({navigation}: StartScreenProps) {
   }, [navigation]);
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={typoStyle.title2}>
-        가게를 찾을땐 역시 어디가게{'\n'}가게를 찾을땐 역시 어디가게{'\n'}가게를
-        찾을땐 역시 어디가게
-      </Text>
+      <View style={styles.appExplanation}>
+        {/* <View style={styles.logoContainer}> */}
+        <Image style={styles.logo} source={logo} />
+        {/* </View> */}
+        <Text style={typoStyle.title2}>
+          {'\n'}고객과 사장님을 잇다.{'\n'}가게를 찾을땐 역시 어디가게
+        </Text>
+        <Text style={[typoStyle.body1, typoStyle.colorGR2]}>
+          수백만 제휴 술집을 어디가게에서 만나요
+        </Text>
+      </View>
+
       <View style={styles.selectButtonContainer}>
         <Pressable style={styles.selectButton} onPress={userSignIn}>
           <Text style={[typoStyle.btn, styles.selectButtonText]}>
@@ -50,6 +59,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF', // 흰색으로 변경
     padding: 40,
+  },
+  appExplanation: {
+    // backgroundColor: 'yellow',
+    marginVertical: 30,
+  },
+  // logoContainer: {
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  logo: {
+    width: '70%',
+    height: '20%',
   },
   selectButtonContainer: {
     marginTop: 100,

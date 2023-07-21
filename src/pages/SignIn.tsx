@@ -9,12 +9,21 @@ import {
   View,
   Pressable,
   StyleSheet,
+  KeyboardAvoidingView,
+  Image,
+  Dimensions,
 } from 'react-native';
 import {typoStyle} from './styles.js';
 
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
 function SignIn({navigation}: SignInScreenProps) {
+  const mainLogo = require('../assets/biType01ColorPositive.png');
+  const iconBack = require('../assets/iconBack.png');
+  const loginOrBar = require('../assets/loginImages/loginOrBar.png');
+  const bi_google = require('../assets/loginImages/bi_google.png');
+  const bi_kakao = require('../assets/loginImages/bi_kakao.png');
+  const idFindPwFindBar = require('../assets/loginImages/idFindPwFindBar.png');
   const goBack = () => {
     navigation.goBack();
   };
@@ -36,7 +45,7 @@ function SignIn({navigation}: SignInScreenProps) {
 
   const toSignUp = useCallback(() => {
     //회원가입버튼 콜백
-    navigation.navigate('SignUp');
+    navigation.navigate('Agreement');
   }, [navigation]);
   const toLoginKakao = useCallback(() => {
     //카카오로그인 콜백
@@ -57,15 +66,12 @@ function SignIn({navigation}: SignInScreenProps) {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable onPress={goBack}>
-        <Text style={styles.header__backbuttonText}>
-          뒤로가기{'\n'}(사진으로 첨부)
-        </Text>
+      {/* <KeyboardAvoidingView behavior="position"> */}
+      <Pressable style={styles.header__backbutton} onPress={goBack}>
+        <Image style={styles.header__backbuttonImg} source={iconBack} />
       </Pressable>
-      <View>
-        <Text style={[typoStyle.title1, styles.mainLogo]}>
-          어디가게{'\n'}(사진으로 첨부)
-        </Text>
+      <View style={styles.mainLogoContainer}>
+        <Image style={styles.mainLogo} source={mainLogo} />
       </View>
 
       <View style={styles.emailLogin}>
@@ -122,20 +128,16 @@ function SignIn({navigation}: SignInScreenProps) {
       </View>
 
       <View style={styles.loginSelectHairline}>
-        <Text>------또는------(사진으로첨부)</Text>
+        <Image style={styles.loginSelectHairline__img} source={loginOrBar} />
       </View>
 
       <View style={styles.socialLoginContainer}>
         <View style={styles.socialLogin}>
           <Pressable style={styles.socialLogin__Button} onPress={toLoginKakao}>
-            <Text style={styles.socialLogin__ButtonText}>
-              Kakao{'\n'}(사진으로첨부)
-            </Text>
+            <Image style={styles.socialLogin__ButtonImg} source={bi_kakao} />
           </Pressable>
           <Pressable style={styles.socialLogin__Button} onPress={toLoginGoogle}>
-            <Text style={styles.socialLogin__ButtonText}>
-              Google{'\n'}(사진으로첨부)
-            </Text>
+            <Image style={styles.socialLogin__ButtonImg} source={bi_google} />
           </Pressable>
         </View>
       </View>
@@ -147,6 +149,10 @@ function SignIn({navigation}: SignInScreenProps) {
               아이디찾기
             </Text>
           </Pressable>
+          <Image
+            style={styles.findUser__idFindPwFindBarImg}
+            source={idFindPwFindBar}
+          />
           <Pressable style={styles.findUser__findButton} onPress={toFindPw}>
             <Text style={[typoStyle.body2, styles.findUser__findButtonText]}>
               비밀번호찾기
@@ -154,6 +160,7 @@ function SignIn({navigation}: SignInScreenProps) {
           </Pressable>
         </View>
       </View>
+      {/* </KeyboardAvoidingView> */}
     </SafeAreaView>
   );
 }
@@ -163,15 +170,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF', // 흰색으로 변경
   },
-  header__backbuttonText: {
-    paddingVertical: 30,
+  header__backbutton: {
+    marginVertical: 10,
+    width: 30,
+    height: 30,
+  },
+  header__backbuttonImg: {
+    width: '100%',
+    height: '100%',
+  },
+  mainLogoContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 10,
   },
   mainLogo: {
-    textAlign: 'center',
-    paddingVertical: 50,
+    width: 200,
+    height: 200,
   },
   emailLogin: {
-    marginVertical: 30,
+    paddingTop: 20,
+    paddingBottom: 10,
   },
   emailLogin__textInput: {
     backgroundColor: '#F2F2F2', // 배경색
@@ -181,7 +200,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
   },
   emailLogin__ButtonZone: {
-    backgroundColor: 'yellow',
     paddingVertical: 7,
   },
   emailLogin__loginButton: {
@@ -200,29 +218,43 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   emailLogin__signUpButton: {
+    justifyContent: 'center',
     alignItems: 'center',
   },
   emailLogin__signUpButtonText: {},
 
   loginSelectHairline: {
     alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 10,
+    height: 40,
+  },
+  loginSelectHairline__img: {
+    width: '80%',
+    height: '80%',
   },
 
   socialLoginContainer: {
+    justifyContent: 'center',
     alignItems: 'center',
   },
   socialLogin: {
     flexDirection: 'row',
-    paddingVertical: 30,
   },
   socialLogin__Button: {
-    paddingHorizontal: 10,
+    marginHorizontal: 10,
+    height: 45,
+    width: 45,
+    //backgroundColor: 'yellow',
   },
-  socialLogin__ButtonText: {},
+  socialLogin__ButtonImg: {
+    width: '100%',
+    height: '100%',
+  },
 
   findUserContainer: {
     alignItems: 'center',
+    justifyContent: 'center',
   },
   findUser: {
     flexDirection: 'row',
