@@ -3,8 +3,8 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
 import {Text, View} from 'react-native';
 
-type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
-function SignUp({}: SignInScreenProps) {
+type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
+function SignUp({}: SignUpScreenProps) {
   return (
     <View>
       <Text>회원가입</Text>

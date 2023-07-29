@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import userSlice from '../slices/user';
 import storeMapSlice from '../slices/storeMap';
 import filter1Slice from '../slices/filter1';
 import filter2Slice from '../slices/filter2';
@@ -8,6 +9,7 @@ import storeModalSlice from '../slices/storeModal';
 
 const rootReducer = combineReducers({
   //slice 내용 적으면 됨.
+  user: userSlice.reducer,
   storeMap: storeMapSlice.reducer,
   filter1: filter1Slice.reducer,
   filter2: filter2Slice.reducer,
