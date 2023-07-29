@@ -18,6 +18,13 @@ import storeModalSlice from '../slices/storeModal';
 import StoreDetail from '../pages/StoreDetail';
 import Reservation from '../pages/Reservation';
 
+/*
+ * StoreMap(지도, 메인 화면)에서 검색한 주점을 눌렀을 때 나오는 화면.
+ * [Redux] storeModal 슬라이스를 통해 보여주기 여부를 설정하였음.
+ * Animated.View 활용하여 액션 뷰를 작성하였고, 화면 일정 부분 정도만 나오고 하단으로 내려갈때 액션 들어감.
+ * 전체 화면 출력은 '바로 예약' 혹은 '매장 보기' 버튼을 눌렀을 때 페이지 전환 되도록 함.
+ */
+
 const StoreModal = () => {
   const dispatch = useAppDispatch();
   const storeModal = useSelector(

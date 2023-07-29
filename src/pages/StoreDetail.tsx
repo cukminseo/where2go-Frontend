@@ -6,6 +6,12 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Setting from './Setting';
 
+/*
+ * StoreModal에 있는 '매장 보기' 버튼 클릭시 전환되는 페이지.
+ * StoreModal에 있는 setStoreDetail() 통해 보여주기 여부 설정.
+ * 메뉴/후기/정보 탭 틀만 구현해두고 상세 내용 작성 안 되어 있음.
+ */
+
 const StoreDetail = props => {
   useEffect(() => {
     console.log('매장보기 ', '매장입니다~~~');

@@ -1,8 +1,14 @@
 import * as React from 'react';
-import {Pressable, Text, View, StyleSheet, Image} from 'react-native';
-import {useState} from 'react';
+import {Pressable, Text, View, StyleSheet} from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
+/*
+ * 주점 검색 창 하단 4가지 필터 중 주점 종류에 해당하는 화면.
+ * StoreMap(지도, 메인 화면)의 setCategoryVisible() 넘겨 받아서 보여주기 여부 설정.
+ * 각 이름은 api문서를 참고하거나 프론트엔드 내에서 협의하였음.
+ * [수정 필요] 'react-native-bouncy-checkbox'로 체크박스를 구현하였으나, 회원가입 때 사용한 것으로 통일하기로 협의.
+ */
 
 const Filter2 = props => {
   const categories = [
