@@ -8,8 +8,14 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
+
+/*
+ * 주점 검색 창 하단 4가지 필터 중 선호 지역에 해당하는 화면.
+ * StoreMap(지도, 메인 화면)의 setFavorLocation() 넘겨 받아서 보여주기 여부 설정.
+ * 각 이름은 api문서를 참고하거나 프론트엔드 내에서 협의하였음.
+ * FlatList 활용하여 리스트 목록을 구현하였고, 현재는 가상의 데이터를 추가해둠.
+ */
 
 const Filter4 = props => {
   const arr = [];

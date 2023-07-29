@@ -9,7 +9,6 @@ import {
   Modal,
   Image,
   Pressable,
-  ImageBackground,
 } from 'react-native';
 import NaverMapView, {Marker} from 'react-native-nmap';
 import Geolocation from '@react-native-community/geolocation';
@@ -26,6 +25,20 @@ import Config from 'react-native-config';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/reducer';
 import StoreModal from '../components/StoreModal';
+
+/*
+ * 핵심 메인 화면
+ * [Redux] storeMap, storeModal, user 슬라이스
+ *  - storeMap: 지도 화면으로 넘어왔을 때 사용자 기반으로 보여주는 주점과 검색 주점을 찾을 수 있도록 하였음.
+ *              서버에서 보내주는 데이터 형식과 'react-native-nmap'에서 활용하는 마커의 요청 형식이 달라 map을 통해 데이터 저장되도록 함.
+ *  - storeModal: storeModal 보여주기 여부 설정.
+ *  - user: 본인이 작업하지 않아 accessToken 추가할 수 있도록 현재는 주석처리만 해둠.
+ * 통신 로직 구현을 위해 적어둔 부분, 아직 적용 못함.
+ * useEffect를 통해 작성해둔 더미 데이터를 보기 위해서는 코드 수정(띄어쓰기도 가능) 후 저장 -> reload를 하면 테스트 데이터 확인 가능.
+ * [수정 못한 오류]
+ *  1. 마커 표시가 깜빡이는 문제('react-native-nmap'의 문제로 확인.)
+ *  2. map 형태로 데이터를 저장해서인지 index 오류 발생. 현재는 index오류 대신 2번 StoreModal이 출력되어 확인은 가능하도록 함.
+ */
 
 function StoreMap() {
   const dispatch = useAppDispatch();
@@ -338,8 +351,6 @@ const styles = StyleSheet.create({
     flex: 9,
     paddingVertical: 10,
     paddingHorizontal: 15,
-    // borderColor: '#ccc',
-    // borderWidth: 1,
   },
   header__input: {
     backgroundColor: '#F2F2F2',
