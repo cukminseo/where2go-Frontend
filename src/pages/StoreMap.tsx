@@ -19,10 +19,26 @@ import Filter4 from '../components/Filter4';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useAppDispatch} from '../store';
 import storeMapSlice from '../slices/storeMap';
+import storeModalSlice from '../slices/storeModal';
 import axios, {AxiosError} from 'axios';
 import Config from 'react-native-config';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/reducer';
+import StoreModal from '../components/StoreModal';
+
+/*
+ * 핵심 메인 화면
+ * [Redux] storeMap, storeModal, user 슬라이스
+ *  - storeMap: 지도 화면으로 넘어왔을 때 사용자 기반으로 보여주는 주점과 검색 주점을 찾을 수 있도록 하였음.
+ *              서버에서 보내주는 데이터 형식과 'react-native-nmap'에서 활용하는 마커의 요청 형식이 달라 map을 통해 데이터 저장되도록 함.
+ *  - storeModal: storeModal 보여주기 여부 설정.
+ *  - user: 본인이 작업하지 않아 accessToken 추가할 수 있도록 현재는 주석처리만 해둠.
+ * 통신 로직 구현을 위해 적어둔 부분, 아직 적용 못함.
+ * useEffect를 통해 작성해둔 더미 데이터를 보기 위해서는 코드 수정(띄어쓰기도 가능) 후 저장 -> reload를 하면 테스트 데이터 확인 가능.
+ * [수정 못한 오류]
+ *  1. 마커 표시가 깜빡이는 문제('react-native-nmap'의 문제로 확인.)
+ *  2. map 형태로 데이터를 저장해서인지 index 오류 발생. 현재는 index오류 대신 2번 StoreModal이 출력되어 확인은 가능하도록 함.
+ */
 
 function StoreMap() {
   const dispatch = useAppDispatch();
@@ -33,6 +49,9 @@ function StoreMap() {
   );
   const searchStoreList = useSelector(
     (state: RootState) => state.storeMap.searchStores,
+  );
+  const storeModal = useSelector(
+    (state: RootState) => state.storeModal.detailVisible,
   );
 
   //현재 위치
@@ -223,7 +242,7 @@ function StoreMap() {
             <Text style={styles.filterBox__textStyle}>인원수</Text>
           </Pressable>
           <Modal visible={numberVisible} transparent statusBarTranslucent>
-            <Filter1 setCheckVisible={setNumberVisible} />
+            <Filter1 setNumberVisible={setNumberVisible} />
           </Modal>
           <Pressable onPress={() => setCategoryVisible(true)}>
             <Text style={styles.filterBox__textStyle}>주점 종류</Text>
@@ -261,6 +280,7 @@ function StoreMap() {
           }}>
           {console.log('storeData입니다', storeData)}
           {console.log('==============markerData', markers)}
+          {console.log('==============================', storeModal)}
           {markers &&
             markers.map(
               (store: {
@@ -276,7 +296,24 @@ function StoreMap() {
                   anchor={{x: 0.5, y: 0.5}}
                   caption={{text: store.title}}
                   image={require('../assets/mapIcon/icon_location.png')}
-                />
+                  onClick={(): void => {
+                    dispatch(storeModalSlice.actions.setDetailVisible());
+                    console.log('clicked', storeModal);
+                  }}>
+                  {!storeModal ? (
+                    <Image
+                      style={{width: 30, height: 30}}
+                      source={require('../assets/mapIcon/icon_location.png')}
+                    />
+                  ) : (
+                    <Modal
+                      animationType="fade"
+                      visible={storeModal}
+                      transparent>
+                      <StoreModal />
+                    </Modal>
+                  )}
+                </Marker>
               ),
             )}
         </NaverMapView>
@@ -314,8 +351,6 @@ const styles = StyleSheet.create({
     flex: 9,
     paddingVertical: 10,
     paddingHorizontal: 15,
-    // borderColor: '#ccc',
-    // borderWidth: 1,
   },
   header__input: {
     backgroundColor: '#F2F2F2',
@@ -358,7 +393,7 @@ const styles = StyleSheet.create({
   },
   currentStatus: {
     position: 'absolute',
-    top: '90%',
+    top: Dimensions.get('window').height * 0.85,
     alignSelf: 'auto',
   },
   currentStatus__btnStatus: {

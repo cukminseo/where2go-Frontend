@@ -1,10 +1,15 @@
 import * as React from 'react';
 import {Pressable, Text, View, StyleSheet, SafeAreaView} from 'react-native';
-import {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/reducer';
 import filter1Slice from '../slices/filter1';
 import {useAppDispatch} from '../store';
+
+/*
+ * 주점 검색 창 하단 4가지 필터 중 인원 수에 해당하는 화면.
+ * StoreMap(지도, 메인 화면)의 setNumberVisible() 넘겨 받아서 보여주기 여부 설정.
+ * [Redux] filter1 슬라이스에서 인원 증감과 초기 숫자 설정.
+ */
 
 const Filter1 = props => {
   const dispatch = useAppDispatch();
@@ -40,7 +45,7 @@ const Filter1 = props => {
             <Text
               style={styles.check__textStyle}
               onPress={() => {
-                props.setCheckVisible(false);
+                props.setNumberVisible(false);
                 dispatch(filter1Slice.actions.setNumber());
               }}>
               취소
@@ -50,7 +55,7 @@ const Filter1 = props => {
             <Text
               style={styles.check__textStyle}
               onPress={() => {
-                props.setCheckVisible(false);
+                props.setNumberVisible(false);
               }}>
               확인
             </Text>

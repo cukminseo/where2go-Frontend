@@ -15,6 +15,12 @@ import Setting from './src/pages/Setting';
 import {Modal, Pressable, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+/*
+ * 앱의 전체적인 흐름
+ * 1. 로그인 여부에 따라 보이는 화면이 달라지게 함.
+ * 2. 로그인 후 지도 화면과 함께 네비게이션 바를 보이도록 함.
+ */
+
 export type LoggedInParamList = {
   StoreMap: undefined;
   Setting: undefined;
