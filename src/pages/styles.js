@@ -1,9 +1,16 @@
 import {StyleSheet} from 'react-native';
 
+export const COLOR_GR0 = '#333333';
 export const COLOR_GR1 = '#666666';
 export const COLOR_GR2 = '#949494';
 export const COLOR_GR3 = '#DCDCDC';
 export const COLOR_GR4 = '#F2F2F2';
+export const PLACEHOLDER = '#D1D1D1';
+export const COLOR_GREEN0 = '#4E6D5E';
+export const COLOR_GREEN1 = '#8DBBA7';
+export const COLOR_GREEN2 = '#D1EAE7';
+export const COLOR_GREEN3 = '#DFE8E7';
+export const COLOR_POINT = '#FECC28';
 
 export const typoStyle = StyleSheet.create({
   title1: {
