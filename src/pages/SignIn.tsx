@@ -31,6 +31,27 @@ function SignIn({navigation}: SignInScreenProps) {
   const [password, setPassword] = useState('');
   const emailRef = useRef<TextInput | null>(null);
   const passwordRef = useRef<TextInput | null>(null);
+
+  /* 각 input box들의 focus 상태 관리*/
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const handleEmailFocus = () => {
+    setIsEmailFocused(true);
+  };
+
+  const handleEmailBlur = () => {
+    setIsEmailFocused(false);
+  };
+
+  const handlePasswordFocus = () => {
+    setIsPasswordFocused(true);
+  };
+
+  const handlePasswordBlur = () => {
+    setIsPasswordFocused(false);
+  };
+  /*----------------------------------여기까지..*/
+
   const onChangeEmail = useCallback(text => {
     setEmail(text.trim());
   }, []);
@@ -77,8 +98,15 @@ function SignIn({navigation}: SignInScreenProps) {
       <View style={styles.emailLogin}>
         {/* 이메일입력 */}
         <TextInput
-          style={[commonStyles.typoStyle.body2, styles.emailLogin__textInput]}
+          style={[
+            commonStyles.typoStyle.body2,
+            styles.emailLogin__textInput,
+            isEmailFocused
+              ? {borderWidth: StyleSheet.hairlineWidth, borderColor: 'green'}
+              : {},
+          ]}
           placeholder="이메일을 입력해주세요"
+          placeholderTextColor={commonStyles.PLACEHOLDER}
           value={email}
           importantForAutofill="yes"
           autoComplete="email"
@@ -89,12 +117,20 @@ function SignIn({navigation}: SignInScreenProps) {
           clearButtonMode="while-editing"
           ref={emailRef}
           onSubmitEditing={() => passwordRef.current?.focus()}
-          blurOnSubmit={false}
+          onFocus={handleEmailFocus}
+          onBlur={handleEmailBlur}
         />
         {/* 비밀번호입력 */}
         <TextInput
-          style={[commonStyles.typoStyle.body2, styles.emailLogin__textInput]}
+          style={[
+            commonStyles.typoStyle.body2,
+            styles.emailLogin__textInput,
+            isPasswordFocused
+              ? {borderWidth: StyleSheet.hairlineWidth, borderColor: 'green'}
+              : {},
+          ]}
           placeholder="비밀번호를 입력해주세요"
+          placeholderTextColor={commonStyles.PLACEHOLDER}
           onChangeText={onChangePassword}
           value={password}
           autoComplete="password"
@@ -103,6 +139,8 @@ function SignIn({navigation}: SignInScreenProps) {
           returnKeyType="send"
           clearButtonMode="while-editing"
           ref={passwordRef}
+          onFocus={handlePasswordFocus}
+          onBlur={handlePasswordBlur}
           onSubmitEditing={emailOnSubmit}
         />
         <Pressable
