@@ -36,6 +36,63 @@ function SignUp({navigation}: SignUpScreenProps) {
   const phoneNumberRef = useRef<TextInput | null>(null);
   const nickNameRef = useRef<TextInput | null>(null);
 
+  /* 각 input box들의 focus 상태 관리*/
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [isCheckPasswordFocused, setIsCheckPasswordFocused] = useState(false);
+  const [isNameFocused, setIsNameFocused] = useState(false);
+  const [isPhoneNumberFocused, setIsPhoneNumberFocused] = useState(false);
+  const [isNickNameFocused, setIsNickNameFocused] = useState(false);
+
+  const handleEmailFocus = () => {
+    setIsEmailFocused(true);
+  };
+
+  const handleEmailBlur = () => {
+    setIsEmailFocused(false);
+  };
+
+  const handlePasswordFocus = () => {
+    setIsPasswordFocused(true);
+  };
+
+  const handlePasswordBlur = () => {
+    setIsPasswordFocused(false);
+  };
+
+  const handleCheckPasswordFocus = () => {
+    setIsCheckPasswordFocused(true);
+  };
+
+  const handleCheckPasswordBlur = () => {
+    setIsCheckPasswordFocused(false);
+  };
+
+  const handleNameFocus = () => {
+    setIsNameFocused(true);
+  };
+
+  const handleNameBlur = () => {
+    setIsNameFocused(false);
+  };
+
+  const handlePhoneNumberFocus = () => {
+    setIsPhoneNumberFocused(true);
+  };
+
+  const handlePhoneNumberBlur = () => {
+    setIsPhoneNumberFocused(false);
+  };
+
+  const handleNickNameFocus = () => {
+    setIsNickNameFocused(true);
+  };
+
+  const handleNickNameBlur = () => {
+    setIsNickNameFocused(false);
+  };
+  /*----------------------------------여기까지..*/
+
   const onChangeEmail = useCallback(text => {
     setEmail(text.trim());
   }, []);
@@ -104,8 +161,10 @@ function SignUp({navigation}: SignUpScreenProps) {
     return formattedPhoneNumber;
   };
 
-  const canGoNext =
+  const existSignUpData =
     email && name && password && checkPassword && phoneNumber && nickName;
+
+  // const placeHolderStyle = [commonStyles.typoStyle.body2, styles.textInput];
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -120,10 +179,16 @@ function SignUp({navigation}: SignUpScreenProps) {
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>이메일</Text>
         <TextInput
-          style={[commonStyles.typoStyle.body2, styles.textInput]}
+          style={[
+            commonStyles.typoStyle.body2,
+            styles.textInput,
+            isEmailFocused
+              ? {borderWidth: StyleSheet.hairlineWidth, borderColor: 'green'}
+              : {},
+          ]}
           onChangeText={onChangeEmail}
           placeholder="이메일을 입력해주세요"
-          placeholderTextColor="#666"
+          placeholderTextColor={commonStyles.PLACEHOLDER}
           textContentType="emailAddress"
           value={email}
           returnKeyType="next"
@@ -131,51 +196,74 @@ function SignUp({navigation}: SignUpScreenProps) {
           clearButtonMode="while-editing"
           ref={emailRef}
           onSubmitEditing={() => passwordRef.current?.focus()}
-          blurOnSubmit={false}
+          onFocus={handleEmailFocus}
+          onBlur={handleEmailBlur}
         />
       </View>
 
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>비밀번호</Text>
         <TextInput
-          style={[commonStyles.typoStyle.body2, styles.textInput]}
+          style={[
+            commonStyles.typoStyle.body2,
+            styles.textInput,
+            isPasswordFocused
+              ? {borderWidth: StyleSheet.hairlineWidth, borderColor: 'green'}
+              : {},
+          ]}
           placeholder="비밀번호를 입력해주세요(영문,숫자,특수문자)"
-          placeholderTextColor="#666"
+          placeholderTextColor={commonStyles.PLACEHOLDER}
           onChangeText={onChangePassword}
           value={password}
           keyboardType={Platform.OS === 'android' ? 'default' : 'ascii-capable'}
           textContentType="password"
           secureTextEntry
-          returnKeyType="send"
+          returnKeyType="next"
           clearButtonMode="while-editing"
           ref={passwordRef}
           onSubmitEditing={() => checkPasswordRef.current?.focus()}
+          onFocus={handlePasswordFocus}
+          onBlur={handlePasswordBlur}
         />
       </View>
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>비밀번호 확인</Text>
         <TextInput
-          style={[commonStyles.typoStyle.body2, styles.textInput]}
+          style={[
+            commonStyles.typoStyle.body2,
+            styles.textInput,
+            isCheckPasswordFocused
+              ? {borderWidth: StyleSheet.hairlineWidth, borderColor: 'green'}
+              : {},
+          ]}
           placeholder="비밀번호를 입력해주세요(영문,숫자,특수문자)"
-          placeholderTextColor="#666"
+          placeholderTextColor={commonStyles.PLACEHOLDER}
           onChangeText={onChangeCheckPassword}
           value={checkPassword}
           keyboardType={Platform.OS === 'android' ? 'default' : 'ascii-capable'}
           textContentType="password"
           secureTextEntry
-          returnKeyType="send"
+          returnKeyType="next"
           clearButtonMode="while-editing"
           ref={checkPasswordRef}
           onSubmitEditing={() => nameRef.current?.focus()}
+          onFocus={handleCheckPasswordFocus}
+          onBlur={handleCheckPasswordBlur}
         />
       </View>
 
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>이름</Text>
         <TextInput
-          style={[commonStyles.typoStyle.body2, styles.textInput]}
+          style={[
+            commonStyles.typoStyle.body2,
+            styles.textInput,
+            isNameFocused
+              ? {borderWidth: StyleSheet.hairlineWidth, borderColor: 'green'}
+              : {},
+          ]}
           placeholder="이름을 입력해주세요."
-          placeholderTextColor="#666"
+          placeholderTextColor={commonStyles.PLACEHOLDER}
           onChangeText={onChangeName}
           value={name}
           textContentType="name"
@@ -183,15 +271,22 @@ function SignUp({navigation}: SignUpScreenProps) {
           clearButtonMode="while-editing"
           ref={nameRef}
           onSubmitEditing={() => phoneNumberRef.current?.focus()}
-          blurOnSubmit={false}
+          onFocus={handleNameFocus}
+          onBlur={handleNameBlur}
         />
       </View>
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>휴대폰 번호</Text>
         <TextInput
-          style={[commonStyles.typoStyle.body2, styles.textInput]}
+          style={[
+            commonStyles.typoStyle.body2,
+            styles.textInput,
+            isPhoneNumberFocused
+              ? {borderWidth: StyleSheet.hairlineWidth, borderColor: 'green'}
+              : {},
+          ]}
           placeholder="휴대폰번호를 입력해주세요."
-          placeholderTextColor="#666"
+          placeholderTextColor={commonStyles.PLACEHOLDER}
           onChangeText={onChangePhoneNumber}
           value={phoneNumber}
           keyboardType="numeric"
@@ -200,38 +295,47 @@ function SignUp({navigation}: SignUpScreenProps) {
           clearButtonMode="while-editing"
           ref={phoneNumberRef}
           onSubmitEditing={() => nickNameRef.current?.focus()}
-          blurOnSubmit={false}
+          onFocus={handlePhoneNumberFocus}
+          onBlur={handlePhoneNumberBlur}
         />
       </View>
 
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>닉네임</Text>
         <TextInput
-          style={[commonStyles.typoStyle.body2, styles.textInput]}
+          style={[
+            commonStyles.typoStyle.body2,
+            styles.textInput,
+            isNickNameFocused
+              ? {borderWidth: StyleSheet.hairlineWidth, borderColor: 'green'}
+              : {},
+          ]}
           placeholder="닉네임을 입력해주세요."
-          placeholderTextColor="#666"
+          placeholderTextColor={commonStyles.PLACEHOLDER}
           onChangeText={onChangeNickName}
           value={nickName}
           textContentType="name"
-          returnKeyType="next"
+          returnKeyType="send"
           clearButtonMode="while-editing"
           ref={nickNameRef}
           onSubmitEditing={onSubmit}
           blurOnSubmit={false}
+          onFocus={handleNickNameFocus}
+          onBlur={handleNickNameBlur}
         />
       </View>
-      <View style={styles.buttonZone}>
-        <Pressable
-          style={
-            canGoNext
-              ? StyleSheet.compose(styles.loginButton, styles.loginButtonActive)
-              : styles.loginButton
-          }
-          disabled={!canGoNext}
-          onPress={onSubmit}>
-          <Text style={styles.loginButtonText}>회원가입</Text>
-        </Pressable>
-      </View>
+      <Pressable
+        style={
+          existSignUpData
+            ? StyleSheet.compose(styles.signUpButton, styles.signUpButtonActive)
+            : styles.signUpButton
+        }
+        disabled={!existSignUpData}
+        onPress={onSubmit}>
+        <Text style={[commonStyles.typoStyle.btn, styles.signUpButtonText]}>
+          회원가입
+        </Text>
+      </Pressable>
     </SafeAreaView>
   );
 }
@@ -258,35 +362,40 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   textInput: {
-    padding: 5,
-    color: 'blue',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    padding: 15,
+    borderRadius: 12,
+    backgroundColor: commonStyles.COLOR_GR4,
+
+    // borderBottomWidth: StyleSheet.hairlineWidth,
   },
   inputWrapper: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     backgroundColor: 'yellow',
   },
   label: {
     fontWeight: 'bold',
     fontSize: 16,
-    marginBottom: 20,
+    paddingBottom: 15,
   },
-  buttonZone: {
-    alignItems: 'center',
-  },
-  loginButton: {
-    backgroundColor: 'gray',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 5,
+  signUpButton: {
+    backgroundColor: commonStyles.COLOR_GR3,
+    padding: 15,
+    borderRadius: 12,
     marginBottom: 10,
+    marginVertical: 7,
+    marginHorizontal: 20,
   },
-  loginButtonActive: {
-    backgroundColor: 'blue',
+  signUpButtonActive: {
+    backgroundColor: commonStyles.COLOR_GREEN0,
   },
   loginButtonText: {
     color: 'white',
     fontSize: 16,
+  },
+  signUpButtonText: {
+    color: 'white',
+    textAlign: 'center',
   },
 });
 
