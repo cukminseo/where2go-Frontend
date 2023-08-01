@@ -365,13 +365,11 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 12,
     backgroundColor: commonStyles.COLOR_GR4,
-
-    // borderBottomWidth: StyleSheet.hairlineWidth,
   },
   inputWrapper: {
     paddingHorizontal: 20,
     paddingVertical: 10,
-    backgroundColor: 'yellow',
+    // backgroundColor: 'yellow',
   },
   label: {
     fontWeight: 'bold',
