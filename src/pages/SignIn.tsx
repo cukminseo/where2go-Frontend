@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   emailLogin__loginButton: {
-    backgroundColor: '#DCDCDC',
+    backgroundColor: commonStyles.COLOR_GR3,
     padding: 15,
     borderRadius: 12,
     marginBottom: 10,
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
   },
   emailLogin__loginButtonActive: {
-    backgroundColor: '#4E6D5E',
+    backgroundColor: commonStyles.COLOR_GREEN0,
   },
   emailLogin__loginButtonText: {
     color: 'white',
