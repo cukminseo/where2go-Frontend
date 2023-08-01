@@ -13,7 +13,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import {typoStyle} from './styles.js';
+import * as commonStyles from './styles.js';
 
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
@@ -77,7 +77,7 @@ function SignIn({navigation}: SignInScreenProps) {
       <View style={styles.emailLogin}>
         {/* 이메일입력 */}
         <TextInput
-          style={[typoStyle.body2, styles.emailLogin__textInput]}
+          style={[commonStyles.typoStyle.body2, styles.emailLogin__textInput]}
           placeholder="이메일을 입력해주세요"
           value={email}
           importantForAutofill="yes"
@@ -93,7 +93,7 @@ function SignIn({navigation}: SignInScreenProps) {
         />
         {/* 비밀번호입력 */}
         <TextInput
-          style={[typoStyle.body2, styles.emailLogin__textInput]}
+          style={[commonStyles.typoStyle.body2, styles.emailLogin__textInput]}
           placeholder="비밀번호를 입력해주세요"
           onChangeText={onChangePassword}
           value={password}
@@ -116,12 +116,20 @@ function SignIn({navigation}: SignInScreenProps) {
           }
           onPress={emailOnSubmit}
           disabled={!existLoginData}>
-          <Text style={[typoStyle.btn, styles.emailLogin__loginButtonText]}>
+          <Text
+            style={[
+              commonStyles.typoStyle.btn,
+              styles.emailLogin__loginButtonText,
+            ]}>
             로그인
           </Text>
         </Pressable>
         <Pressable style={styles.emailLogin__signUpButton} onPress={toSignUp}>
-          <Text style={[typoStyle.body2, styles.emailLogin__signUpButtonText]}>
+          <Text
+            style={[
+              commonStyles.typoStyle.body2,
+              styles.emailLogin__signUpButtonText,
+            ]}>
             회원가입
           </Text>
         </Pressable>
@@ -145,7 +153,11 @@ function SignIn({navigation}: SignInScreenProps) {
       <View style={styles.findUserContainer}>
         <View style={styles.findUser}>
           <Pressable style={styles.findUser__findButton} onPress={toFindId}>
-            <Text style={[typoStyle.body2, styles.findUser__findButtonText]}>
+            <Text
+              style={[
+                commonStyles.typoStyle.body2,
+                styles.findUser__findButtonText,
+              ]}>
               아이디찾기
             </Text>
           </Pressable>
@@ -154,7 +166,11 @@ function SignIn({navigation}: SignInScreenProps) {
             source={idFindPwFindBar}
           />
           <Pressable style={styles.findUser__findButton} onPress={toFindPw}>
-            <Text style={[typoStyle.body2, styles.findUser__findButtonText]}>
+            <Text
+              style={[
+                commonStyles.typoStyle.body2,
+                styles.findUser__findButtonText,
+              ]}>
               비밀번호찾기
             </Text>
           </Pressable>
@@ -263,6 +279,7 @@ const styles = StyleSheet.create({
   findUser__findButton: {
     paddingHorizontal: 10,
   },
+  findUser__idFindPwFindBarImg: {},
   findUser__findButtonText: {},
 });
 

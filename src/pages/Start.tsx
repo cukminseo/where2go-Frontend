@@ -9,7 +9,7 @@ import {useAppDispatch} from '../store';
 import {RootStackParamList} from '../../App';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text, View, Pressable, StyleSheet, Image} from 'react-native';
-import {typoStyle} from './styles.js';
+import * as commonStyles from './styles.js';
 
 type StartScreenProps = NativeStackScreenProps<RootStackParamList, 'Start'>;
 
@@ -30,22 +30,22 @@ function Start({navigation}: StartScreenProps) {
         {/* <View style={styles.logoContainer}> */}
         <Image style={styles.logo} source={logo} />
         {/* </View> */}
-        <Text style={typoStyle.title2}>
+        <Text style={commonStyles.typoStyle.title2}>
           {'\n'}고객과 사장님을 잇다.{'\n'}가게를 찾을땐 역시 어디가게
         </Text>
-        <Text style={[typoStyle.body1, typoStyle.colorGR2]}>
+        <Text style={[commonStyles.typoStyle.body1, styles.body1Text]}>
           수백만 제휴 술집을 어디가게에서 만나요
         </Text>
       </View>
 
       <View style={styles.selectButtonContainer}>
         <Pressable style={styles.selectButton} onPress={userSignIn}>
-          <Text style={[typoStyle.btn, styles.selectButtonText]}>
+          <Text style={[commonStyles.typoStyle.btn, styles.selectButtonText]}>
             이용자로 시작
           </Text>
         </Pressable>
         <Pressable style={styles.selectButton} onPress={ownersSignIn}>
-          <Text style={[typoStyle.btn, styles.selectButtonText]}>
+          <Text style={[commonStyles.typoStyle.btn, styles.selectButtonText]}>
             사장님으로 시작
           </Text>
         </Pressable>
@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
   logo: {
     width: '70%',
     height: '20%',
+  },
+  body1Text: {
+    color: commonStyles.COLOR_GR2,
   },
   selectButtonContainer: {
     marginTop: 100,

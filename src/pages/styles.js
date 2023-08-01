@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
 
+export const COLOR_GR1 = '#666666';
+export const COLOR_GR2 = '#949494';
+export const COLOR_GR3 = '#DCDCDC';
+export const COLOR_GR4 = '#F2F2F2';
+
 export const typoStyle = StyleSheet.create({
   title1: {
     fontWeight: 'bold',
@@ -45,17 +50,5 @@ export const typoStyle = StyleSheet.create({
     fontWeight: 'normal',
     fontSize: 12,
     color: '#333333',
-  },
-  colorGR1: {
-    color: '#666666',
-  },
-  colorGR2: {
-    color: '#949494',
-  },
-  colorGR3: {
-    color: '#DCDCDC',
-  },
-  colorGR4: {
-    color: '#F2F2F2',
   },
 });
