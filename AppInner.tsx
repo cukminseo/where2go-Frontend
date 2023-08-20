@@ -47,7 +47,7 @@ const MyPage = () => {
 };
 
 function AppInner() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
   const [favoriteVisible, setFavoriteVisible] = useState(false);
   const [aroundVisible, setAroundVisible] = useState(false);
   const FavoriteModal = () => {
